@@ -88,5 +88,13 @@ In the headings below, replace the silly names and GitHub handles with your actu
 will write the....
 
 ### Ruowei Zhang @rz999
-will work on...
+- [x] GUI/base Create the frame, draw the board on canvas, pict draw the stones. 
+- [ ] Mode option and start stop options. Any other frame work.
+- [ ] GUI mouseevent draw the stone connected with Xiaoling’s board class 
+- [ ] Music or sound effects during the game or at the end(winning)
+
+
+### Together
+- [ ] Winning algorithm design.
+- [ ] PVE AI
  
