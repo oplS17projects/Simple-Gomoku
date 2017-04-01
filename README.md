@@ -1,26 +1,18 @@
-# Project Title Goes Here (10 words maximum)
 # Simple-Gomoku
 
 ### Statement
 Describe your project. Why is it interesting? Why is it interesting to you personally? What do you hope to learn? 
 
 ### Analysis
-Explain what approaches from class you will bring to bear on the project.
+We use data structure matrix in our project. To be specific, we have a matrix named *Board* in our Board class, each element in the matrix is a stone object. By using matrix, there’s no need to refer to each stone and we can easily get access and manipulate. Another example of data abstraction is a point structure that we used for representing x and y coordinates. 
 
-Be explicit about the techiques from the class that you will use. For example:
+We will make a *Stone* class, which contains the color, coordinates, if taken about the stones. The *Board* class which holds 15 by 15 stones in the form of matrix with procedures allows manipulations; and a *Game* class where the game takes place on. It basically creates an abstract interface that allows the manipulation of stones. It lets the players place stones in turns, updates boards, and evaluates each positions based on current board for PvE mode. 
 
-- Will you use data abstraction? How?
-- Will you use recursion? How?
-- Will you use map/filter/reduce? How? 
-- Will you use object-orientation? How?
-- Will you use functional approaches to processing your data? How?
-- Will you use state-modification approaches? How? (If so, this should be encapsulated within objects. `set!` pretty much should only exist inside an object.)
-- Will you build an expression evaluator, like we did in the symbolic differentatior and the metacircular evaluator?
-- Will you use lazy evaluation approaches?
+Since we have a matrix of stones, it would be extremely helpful to use filter to manipulate the stones in matrix. One usage we are thinking about is to use filter to filter out the isolated stones.We keep the same-color stones in a new matrix and use recursive function to detect if the same color stones are 4-in-a-row, 3-in-a-row in horizontal, vertical or diagonal directions while making decision about where the computer should draw the next stone. We are also planning to use filter to find stones that satisfies certain features.
 
-The idea here is to identify what ideas from the class you will use in carrying out your project. 
+Even though mostly our program is constructed based on classes/imperative programming approaches. We will use functional approaches, for instance, to start the game or do simple calculations that does not hold any states. We will use state-modification approaches. This is a game, so we need to record game process via states. Specifically, the state-modifications will happen in our classes (for instance, the updates of board/piece informations). Our classes contain member variables (fields) that will be modified via set! as the game state proceed. 
 
-**Your project will be graded, in part, by the extent to which you adopt approaches from the course into your implementation, _and_ your discussion about this.**
+We will use lazy evaluation in our PVE AI and winning algorithm. Our recursion function would test from 5-in-a-row then decreasing each time by 1. Once we find 5-in-a-row in either horizontal, vertical or diagonal direction, we won’t continue testing the rest.
 
 ### External Technologies
 You are encouraged to develop a project that connects to external systems. For example, this includes systems that:
@@ -92,11 +84,9 @@ Please use Github properly: each individual must make the edits to this file rep
 
 In the headings below, replace the silly names and GitHub handles with your actual ones.
 
-### Susan Scheme @susanscheme
+### Xiaoling Zheng @xlzhen
 will write the....
 
-### Leonard Lambda @lennylambda
+### Ruowei Zhang @rz999
 will work on...
-
-### Frank Funktions @frankiefunk 
-Frank is team lead. Additionally, Frank will work on...   
+ 
