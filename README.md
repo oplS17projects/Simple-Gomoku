@@ -33,13 +33,15 @@ Our program will be interactive. Player can set pieces on the board, depending o
 
 ### Evaluation of Results
 
+
 The game should be able to allow correct interactions (placing pieces by clicking on the board), precisely evaluates win or lose and give correct prompts.
 
-PvP mode
+
+**PvP mode**
 
 Two users can play the game and blocking/winning algorithms works.
 
-PvE mode
+**PvE mode**
 
 The boot can draw the stones in a smart way and can win at a ok percentage.
 
@@ -72,11 +74,13 @@ Users can draw the stones on our program and **winning algorithm (goal test)**.
 ### Second Milestone (Sun Apr 16)
 
 The project would prevent user from drawing on the same block(which is taken).
+
 Finish PvP mode. Start PvE mode.
 
 ### Public Presentation (Mon Apr 24, Wed Apr 26, or Fri Apr 28 [your date to be determined later])
 
 Finish PvE mode. 
+
 UI.  
 
 ## Group Responsibilities
