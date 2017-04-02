@@ -1,7 +1,7 @@
 # Simple-Gomoku
 
 ### Statement
-Our project is to create a simple Gomoku game. Gomoku is a 15 by 15 strategic board game which is popular in Asian countries. We believe it would be nice if we can implement one via Scheme. We plans to implement a Gomoku game that allows two game modes: two players play against each others (PvP) and one player play against an AI (PvE). Currently, we have several pieces done (created several classes via racket/class, drew board, stones and on-click buttons via racket/gui, etc.). 
+Our project is to create a **simple Gomoku game**. Gomoku is a 15 by 15 strategic board game which is popular in Asian countries. We believe it would be nice if we can implement one via Scheme. We plans to implement a Gomoku game that allows two game modes: two players play against each others (PvP) and one player play against an AI (PvE). Currently, we have several pieces done (created several classes via racket/class, drew board, stones and on-click buttons via racket/gui, etc.). 
 
 ### Analysis
 We use data structure matrix in our project. To be specific, we have a matrix named *Board* in our Board class, each element in the matrix is a stone object. By using matrix, there’s no need to refer to each stone and we can easily get access and manipulate. Another example of data abstraction is a point structure that we used for representing x and y coordinates. 
@@ -16,7 +16,8 @@ We will use lazy evaluation in our PVE AI and winning algorithm. Our recursion f
 
 ### External Technologies
 
-# generate or process sound
+**generate or process sound**
+
 We plans to add sound effect in GUI part. For instance, sound when placing a stone or when a player wins the game.
 
 
@@ -50,7 +51,7 @@ Upload the architecture diagram you made for your slide presentation to your rep
 
 ![ArchitectureDiagram](https://github.com/oplS17projects/Simple-Gomoku/blob/master/ArchitectureDiagram.png?raw=true)
 
-Our program has two major components: Game control and Game UI.
+Our program has two major components: **Game control and Game UI**.
 
 Game UI creates an interface to allow player(s) control the program via mouse click. 
 
@@ -62,8 +63,9 @@ After validating the data, the program will update the game states. For instance
 
 After updating the game states (based on the player's input), the program will test if this player wins the game or not. 
 
-If the game is in PVP mode, it will send goal test result and board information back to UI. 
-If the game is in PVE mode, it will send the same information only if the goal test is true. If the goal test for player is false, the program will run algorithm to select best location to place stone and update status again. Then it will do a goal test for our AI and send back informations to UI for display.
+If the game is in **PvP** mode, it will send goal test result and board information back to UI. 
+
+If the game is in **PvE** mode, it will send the same information only if the goal test is true. If the goal test for player is false, the program will run algorithm to select best location to place stone and update status again. Then it will do a goal test for our AI and send back informations to UI for display.
 
 
 ## Schedule
