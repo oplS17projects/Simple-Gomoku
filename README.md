@@ -16,7 +16,7 @@ We will use lazy evaluation in our PVE AI and winning algorithm. Our recursion f
 
 ### External Technologies
 
-- generate or process sound
+# generate or process sound
 We plans to add sound effect in GUI part. For instance, sound when placing a stone or when a player wins the game.
 
 
@@ -48,7 +48,21 @@ Upload the architecture diagram you made for your slide presentation to your rep
 
 ![ArchitectureDiagram](https://github.com/oplS17projects/Simple-Gomoku/blob/master/ArchitectureDiagram.png?raw=true)
 
-Create several paragraphs of narrative to explain the pieces and how they interoperate.
+Our program has two major components: Game control and Game UI.
+
+Game UI creates an interface to allow player(s) control the program via mouse click. 
+
+After the UI receives mouse click, our program will process the on-click event and sent to "Game Control". 
+
+Check states status will validate the data we get from the mouse-click (for instance, if the player clicks on an invalid point, this will send an error feed back to UI).
+
+After validating the data, the program will update the game states. For instance, changing the occupied status for the selected piece object.
+
+After updating the game states (based on the player's input), the program will test if this player wins the game or not. 
+
+If the game is in PVP mode, it will send goal test result and board information back to UI. 
+If the game is in PVE mode, it will send the same information only if the goal test is true. If the goal test for player is false, the program will run algorithm to select best location to place stone and update status again. Then it will do a goal test for our AI and send back informations to UI for display.
+
 
 ## Schedule
 Explain how you will go from proposal to finished product. 
@@ -78,7 +92,7 @@ UI
 ## Group Responsibilities
 
 ### Xiaoling Zheng @xlzhen
-- [x] Create the stone (piece), board, (possibly player if necessary) and game classes with member procedures and fields that allows interactions (manipulations) with board, updates informations. The game class would be served as a frame that controls game flow. 
+- [ ] Create the stone (piece), board, (possibly player if necessary) and game classes with member procedures and fields that allows interactions (manipulations) with board, updates informations. The game class would be served as a frame that controls game flow. 
 - [ ] I’ll be focus on the internal structure, might add other stuffs if needed.
 
 ### Ruowei Zhang @rz999
@@ -89,6 +103,6 @@ UI
 
 
 ### Together
-- [ ] Winning algorithm design.
+- [ ] Winning algorithm (AI) design.
 - [ ] PVE AI
  
