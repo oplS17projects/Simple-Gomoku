@@ -30,12 +30,12 @@ We might refer to resources on algorithms when we implement our PvE mod. If we d
 
 We will have a 2-D Gomoku game by the end of this project. The demo would show that users can play the game in two modes.
 
-Our program will be interactive. Player can set pieces on the board, depending on the gaming mode, it could be two players interacts with each other or one player interact with an AI. 
+Our program will be interactive. Player can set pieces on the board, depending on the gaming mode, it could be two players interact with each other or one player interacts with an AI. 
 
 ### Evaluation of Results
 
 
-The game should be able to allow correct interactions (placing pieces by clicking on the board), precisely evaluates win or lose and give correct prompts.
+The game should be able to allow correct interactions (placing pieces by clicking on the board), precisely evaluates win or lose and gives correct prompts.
 
 
 **PvP mode**
@@ -85,9 +85,9 @@ Finish PvP mode. Start PvE mode.
 
 ### Public Presentation (Mon Apr 24, Wed Apr 26, or Fri Apr 28 [your date to be determined later])
 
-Finish PvE mode. 
+Finish PvE mode AI. 
 
-UI.  
+UI Improvenment.  
 
 ## Group Responsibilities
 
@@ -96,10 +96,10 @@ UI.
 - [ ] I’ll be focus on the internal structure, might add other stuffs if needed.
 
 ### Ruowei Zhang @rz999
-- [x] GUI/base Create the frame, draw the board on canvas, pict draw the stones. 
-- [ ] Mode option and start stop options. Any other frame work.
-- [ ] GUI mouseevent draw the stone connected with Xiaoling’s board class 
-- [ ] Music or sound effects during the game or at the end(winning)
+- [x] GUI/base Create the frame, draw the board on canvas, draw the stones using icon. 
+- [ ] Mode option and start/stop options. Any other frame work.
+- [ ] Use GUI mouseevent draw the stone and make connection with Xiaoling’s classes.
+- [ ] Music or sound effects during the game or at the end(winning).
 
 
 ### Together
