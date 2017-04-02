@@ -18,32 +18,34 @@ We will use lazy evaluation in our PVE AI and winning algorithm. Our recursion f
 
 **Generate or process sound**
 
-We plans to add **sound effect** in GUI part. For instance, sound when placing a stone or when a player wins the game.
+We plan to add **sound effect** in GUI part. For instance, the program will generate sound when placing a stone on the board or when a player wins the game.
 
 
 ### Data Sets or other Source Materials
 
-Currently, we don't have plan on using data sets or source materials. 
-We might refer to resources on algorithms when we implement our PvE mod. If we do later on, we will update the references.
+Currently, we don't have any plan on using data sets or source materials. 
+We might refer to resources on algorithms when we implement our PvE mode. If we do this later on, we will update the references.
 
 ### Deliverable and Demonstration
 
-We will have a 2-D Gomoku game by the end of this project. The demo would show that users can play the game in two modes.
+We will have a 2-D Gomoku game by the end of this project. The demo will show that users can play the game in two modes.
 
-Our program will be interactive. Player can set pieces on the board, depending on the gaming mode, it could be two players interact with each other or one player interacts with an AI. 
+Our program will be interactive. Player can set stones on the board, depending on the gaming mode, it could be two players interact with each other or one player interacts with an AI. 
 
 ### Evaluation of Results
 
 
-The game should be able to allow correct interactions (placing pieces by clicking on the board), precisely evaluates win or lose and gives correct prompts.
+The game should be able to allow correct interactions (placing stones by clicking on the board), precisely evaluate win or lose and give correct prompts.
 
 
 **PvP mode**
 
 Two users can play the game and blocking/winning algorithms works.
+Two playesr will be able to place stones in turn.
 
 **PvE mode**
 
+We plan to implement a non-trivial algorithm that is able to choose better positions to place stones. 
 The boot can draw the stones in a smart way and can win at a ok percentage.
 
 ## Architecture Diagram
@@ -52,30 +54,34 @@ The boot can draw the stones in a smart way and can win at a ok percentage.
 
 Our program has two major components: **Game control and Game UI**.
 
-**Game UI** creates an interface to allow player(s) control the program via **mouse click**. 
+**Game UI**: its an interface that allows player(s) to control the program via **mouse click**. 
 
-After the UI receives mouse click, our program will process the on-click event and sent to **Game Control**. 
+After the UI receives mouse click, our program will process the on-click event and sent to **Game Control**. This part could be converting board frame coordinates into board class coordnates by scaling.
 
-**Check states status** will validate the data we get from the mouse-click (for instance, if the player clicks on an invalid point, this will send an error feed back to UI).
+**Check states status** will validate the data we get from the mouse-click (for instance, if the player clicks on an invalid piece (the piece is occupied by another stone already), this will send an error feed back to UI). 
 
-After validating the data, the program will **update the game states**. For instance, changing the occupied status for the selected piece object.
+After validating the data, the program will **update the game states**. For instance, update board and change the occupied status for the selected piece object.
 
 After updating the game states (based on the player's input), the program will test if this player wins the game or not (**goal test**). 
 
 If the game is in **PvP** mode, it will send goal test result and board information back to UI. 
 
-If the game is in **PvE** mode, it will send the same information only if the goal test is true. If the goal test for player is false, the program will run algorithm to select best location to place stone and update status again. Then it will do a goal test for our AI and send back informations to UI for display.
+If the game is in **PvE** mode, it will send the same information only if the goal test is true. If the goal test for player is false, the program will run algorithm to select best location to place stone and update states again. Then it will do a goal test for our AI and send back informations to UI for display.
 
-As shown in the **status** box on the upper right corner. The program holds states informations (we plan to store it as fields in class (racket/class)). **Mode** stores either the game is PvP mode or PvE mode. This depends on how the player choose in the beginning of the game. **Board** stores 15 by 15 **Piece** objects via Matrix. **White-Stones []** and **Black-Stones []** are lists store placed stones coordinates for easy reference. 
+As shown in the **states** box on the upper right corner. The program holds states informations (we plan to store it as fields in class (racket/class)). **Mode** stores either the game is PvP mode or PvE mode. This depends on what the player choose in the beginning of the game. **Board** stores 15 by 15 **Piece** objects via Matrix. **White-Stones []** and **Black-Stones []** are lists of placed stones coordinates for easy reference. 
 
 We might change our architecture diagram dramatically as we go on implementing the project. 
 
-
+Notes: we use piece to represent each location to place the stone. There are 15 by 15 pieces on a board;
+       we use stone to represent a stone to be placed (there are black and white stones). 
+       
 
 ## Schedule
 ### First Milestone (Sun Apr 9)
 
 Users can draw the stones on our program and **winning algorithm (goal test)**.
+
+Finish the classes and procedures for the game flow and basic operations (take turns, place object, goal test...)
 
 ### Second Milestone (Sun Apr 16)
 
