@@ -1,7 +1,7 @@
 # Simple-Gomoku
 
 ### Statement
-Describe your project. Why is it interesting? Why is it interesting to you personally? What do you hope to learn? 
+Our project is to create a simple Gomoku game. Gomoku is a 15 by 15 strategic board game which is popular in Asian countries. We believe it would be nice if we can implement one via Scheme. We plans to implement a Gomoku game that allows two game modes: two players play against each others (PvP) and one player play against an AI (PvE). Currently, we have several pieces done (created several classes via racket/class, drew board, stones and on-click buttons via racket/gui, etc.). 
 
 ### Analysis
 We use data structure matrix in our project. To be specific, we have a matrix named *Board* in our Board class, each element in the matrix is a stone object. By using matrix, there’s no need to refer to each stone and we can easily get access and manipulate. Another example of data abstraction is a point structure that we used for representing x and y coordinates. 
@@ -15,32 +15,21 @@ Even though mostly our program is constructed based on classes/imperative progra
 We will use lazy evaluation in our PVE AI and winning algorithm. Our recursion function would test from 5-in-a-row then decreasing each time by 1. Once we find 5-in-a-row in either horizontal, vertical or diagonal direction, we won’t continue testing the rest.
 
 ### External Technologies
-You are encouraged to develop a project that connects to external systems. For example, this includes systems that:
 
-- retrieve information or publish data to the web
 - generate or process sound
-- control robots or other physical systems
-- interact with databases
+We plans to add sound effect in GUI part. For instance, sound when placing a stone or when a player wins the game.
 
-If your project will do anything in this category (not only the things listed above!), include this section and discuss.
 
 ### Data Sets or other Source Materials
-If you will be working with existing data, where will you get those data from? (Dowload from a website? Access in a database? Create in a simulation you will build? ...)
 
-How will you convert your data into a form usable for your project?  
-
-If you are pulling data from somewhere, actually go download it and look at it before writing the proposal. Explain in some detail what your plan is for accomplishing the necessary processing.
-
-If you are using some other starting materials, explain what they are. Basically: anything you plan to use that isn't code.
+Currently, we don't have plan on using data sets or source materials. 
+We might refer to resources on algorithms when we implement our PvE mod. If we do later on, we will update the references.
 
 ### Deliverable and Demonstration
-Explain exactly what you'll have at the end. What will it be able to do at the live demo?
 
-What exactly will you produce at the end of the project? A piece of software, yes, but what will it do? Here are some questions to think about (and answer depending on your application).
+We will have a 2-D Gomoku game by the end of this project. The demo would show that users can play the game in two modes.
 
-Will it run on some data, like batch mode? Will you present some analytical results of the processing? How can it be re-run on different source data?
-
-Will it be interactive? Can you show it working? This project involves a live demo, so interactivity is good.
+Our program will be interactive. Player can set pieces on the board, depending on the gaming mode, it could be two players interacts with each other or one player interact with an AI. 
 
 ### Evaluation of Results
 
