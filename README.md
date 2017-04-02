@@ -6,7 +6,7 @@ Our project is to create a **simple Gomoku game**. Gomoku is a 15 by 15 strategi
 ### Analysis
 We use data structure matrix in our project. To be specific, we have a matrix named *Board* in our Board class, each element in the matrix is a stone object. By using matrix, there’s no need to refer to each stone and we can easily get access and manipulate. Another example of data abstraction is a point structure that we used for representing x and y coordinates. 
 
-We will make a *Stone* class, which contains the color, coordinates, if taken about the stones. The *Board* class which holds 15 by 15 stones in the form of matrix with procedures allows manipulations; and a *Game* class where the game takes place on. It basically creates an abstract interface that allows the manipulation of stones. It lets the players place stones in turns, updates boards, and evaluates each positions based on current board for PvE mode. 
+We will make a *Piece* class, which contains the occupied status, coordinates. The *Board* class which holds 15 by 15 stones in the form of matrix with procedures allows manipulations; and a *Game* class where the game takes place on. It basically creates an abstract interface that allows the manipulation of stones. It lets the players place stones in turns, updates boards, and evaluates each positions based on current board for PvE mode. 
 
 Since we have a matrix of stones, it would be extremely helpful to use filter to manipulate the stones in matrix. One usage we are thinking about is to use filter to filter out the isolated stones.We keep the same-color stones in a new matrix and use recursive function to detect if the same color stones are 4-in-a-row, 3-in-a-row in horizontal, vertical or diagonal directions while making decision about where the computer should draw the next stone. We are also planning to use filter to find stones that satisfies certain features.
 
@@ -16,9 +16,9 @@ We will use lazy evaluation in our PVE AI and winning algorithm. Our recursion f
 
 ### External Technologies
 
-**generate or process sound**
+**Generate or process sound**
 
-We plans to add sound effect in GUI part. For instance, sound when placing a stone or when a player wins the game.
+We plans to add **sound effect** in GUI part. For instance, sound when placing a stone or when a player wins the game.
 
 
 ### Data Sets or other Source Materials
@@ -47,25 +47,29 @@ Two users can play the game and blocking/winning algorithms works.
 The boot can draw the stones in a smart way and can win at a ok percentage.
 
 ## Architecture Diagram
-Upload the architecture diagram you made for your slide presentation to your repository, and include it in-line here.
 
 ![ArchitectureDiagram](https://github.com/oplS17projects/Simple-Gomoku/blob/master/ArchitectureDiagram.png?raw=true)
 
 Our program has two major components: **Game control and Game UI**.
 
-Game UI creates an interface to allow player(s) control the program via mouse click. 
+**Game UI** creates an interface to allow player(s) control the program via **mouse click**. 
 
-After the UI receives mouse click, our program will process the on-click event and sent to "Game Control". 
+After the UI receives mouse click, our program will process the on-click event and sent to **Game Control**. 
 
-Check states status will validate the data we get from the mouse-click (for instance, if the player clicks on an invalid point, this will send an error feed back to UI).
+**Check states status** will validate the data we get from the mouse-click (for instance, if the player clicks on an invalid point, this will send an error feed back to UI).
 
-After validating the data, the program will update the game states. For instance, changing the occupied status for the selected piece object.
+After validating the data, the program will **update the game states**. For instance, changing the occupied status for the selected piece object.
 
-After updating the game states (based on the player's input), the program will test if this player wins the game or not. 
+After updating the game states (based on the player's input), the program will test if this player wins the game or not (**goal test**). 
 
 If the game is in **PvP** mode, it will send goal test result and board information back to UI. 
 
 If the game is in **PvE** mode, it will send the same information only if the goal test is true. If the goal test for player is false, the program will run algorithm to select best location to place stone and update status again. Then it will do a goal test for our AI and send back informations to UI for display.
+
+As shown in the **status** box on the upper right corner. The program holds states informations (we plan to store it as fields in class (racket/class)). **Mode** stores either the game is PvP mode or PvE mode. This depends on how the player choose in the beginning of the game. **Board** stores 15 by 15 **Piece** objects via Matrix. **White-Stones []** and **Black-Stones []** are lists store placed stones coordinates for easy reference. 
+
+We might change our architecture diagram dramatically as we go on implementing the project. 
+
 
 
 ## Schedule
@@ -99,6 +103,6 @@ UI.
 
 
 ### Together
-- [ ] Winning algorithm (AI) design.
+- [ ] Winning algorithm (Goal test) design.
 - [ ] PVE AI
  
