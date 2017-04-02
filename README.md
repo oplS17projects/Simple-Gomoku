@@ -57,7 +57,7 @@ The boot can draw the stones in a smart way and can win at a ok percentage.
 ## Architecture Diagram
 Upload the architecture diagram you made for your slide presentation to your repository, and include it in-line here.
 
-![ArchitectureDiagram]https://github.com/oplS17projects/Simple-Gomoku/blob/master/ArchitectureDiagram.png?raw=true
+![ArchitectureDiagram](https://github.com/oplS17projects/Simple-Gomoku/blob/master/ArchitectureDiagram.png?raw=true)
 
 Create several paragraphs of narrative to explain the pieces and how they interoperate.
 
