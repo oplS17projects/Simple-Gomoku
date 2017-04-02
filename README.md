@@ -65,29 +65,19 @@ If the game is in PVE mode, it will send the same information only if the goal t
 
 
 ## Schedule
-Explain how you will go from proposal to finished product. 
-
-There are three deliverable milestones to explicitly define, below.
-
-The nature of deliverables depend on your project, but may include things like processed data ready for import, core algorithms implemented, interface design prototyped, etc. 
-
-You will be expected to turn in code, documentation, and data (as appropriate) at each of these stages.
-
-Write concrete steps for your schedule to move from concept to working system. 
-
 ### First Milestone (Sun Apr 9)
 
-Users can draw the stones on our program and **winning algorithm**.
+Users can draw the stones on our program and **winning algorithm (goal test)**.
 
 ### Second Milestone (Sun Apr 16)
-Finihs PvP mode. Start PvE mode.
 
 The project would prevent user from drawing on the same block(which is taken).
+Finish PvP mode. Start PvE mode.
 
 ### Public Presentation (Mon Apr 24, Wed Apr 26, or Fri Apr 28 [your date to be determined later])
 
 Finish PvE mode. 
-UI  
+UI.  
 
 ## Group Responsibilities
 
