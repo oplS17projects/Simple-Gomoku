@@ -4,7 +4,7 @@
 Our project is to create a **simple Gomoku game**. Gomoku is a 15 by 15 strategic board game which is popular in Asian countries. We believe it would be nice if we can implement one via Scheme. We plans to implement a Gomoku game that allows two game modes: two players play against each others (PvP) and one player play against an AI (PvE). Currently, we have several pieces done (created several classes via racket/class, drew board, stones and on-click buttons via racket/gui, etc.). 
 
 ### Analysis
-We use data structure matrix in our project. To be specific, we have a matrix named *Board* in our Board class, each element in the matrix is a stone object. By using matrix, there’s no need to refer to each stone and we can easily get access and manipulate. Another example of data abstraction is a point structure that we used for representing x and y coordinates. 
+We use data structure matrix in our project. To be specific, we have a matrix named *Board* in our Board class, each element in the matrix is a piece object representing one location that we can place a stone on. By using matrix, there’s no need to refer to each piece and we can easily get access and manipulate. Another example of data abstraction is a point structure that we used for representing x and y coordinates. 
 
 We will make a *Piece* class, which contains the occupied status, coordinates. The *Board* class which holds 15 by 15 stones in the form of matrix with procedures allows manipulations; and a *Game* class where the game takes place on. It basically creates an abstract interface that allows the manipulation of stones. It lets the players place stones in turns, updates boards, and evaluates each positions based on current board for PvE mode. 
 
