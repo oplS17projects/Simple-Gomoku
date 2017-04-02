@@ -43,8 +43,16 @@ Will it run on some data, like batch mode? Will you present some analytical resu
 Will it be interactive? Can you show it working? This project involves a live demo, so interactivity is good.
 
 ### Evaluation of Results
-How will you know if you are successful? 
-If you include some kind of _quantitative analysis,_ that would be good.
+
+The game should be able to allow correct interactions (placing pieces by clicking on the board), precisely evaluates win or lose and give correct prompts.
+
+PvP mode
+
+Two users can play the game and blocking/winning algorithms works.
+
+PvE mode
+
+The boot can draw the stones in a smart way and can win at a ok percentage.
 
 ## Architecture Diagram
 Upload the architecture diagram you made for your slide presentation to your repository, and include it in-line here.
@@ -63,29 +71,24 @@ You will be expected to turn in code, documentation, and data (as appropriate) a
 Write concrete steps for your schedule to move from concept to working system. 
 
 ### First Milestone (Sun Apr 9)
-Which portion of the work will be completed (and committed to Github) by this day? 
+
+Users can draw the stones on our program and **winning algorithm**.
 
 ### Second Milestone (Sun Apr 16)
-Which portion of the work will be completed (and committed to Github) by this day?  
+Finihs PvP mode. Start PvE mode.
+
+The project would prevent user from drawing on the same block(which is taken).
 
 ### Public Presentation (Mon Apr 24, Wed Apr 26, or Fri Apr 28 [your date to be determined later])
-What additionally will be completed before the public presentation?
+
+Finish PvE mode. 
+UI  
 
 ## Group Responsibilities
-Here each group member gets a section where they, as an individual, detail what they are responsible for in this project. Each group member writes their own Responsibility section. Include the milestones and final deliverable.
-
-Please use Github properly: each individual must make the edits to this file representing their own section of work.
-
-**Additional instructions for teams of three:** 
-* Remember that you must have prior written permission to work in groups of three (specifically, an approved `FP3` team declaration submission).
-* The team must nominate a lead. This person is primarily responsible for code integration. This work may be shared, but the team lead has default responsibility.
-* The team lead has full partner implementation responsibilities also.
-* Identify who is team lead.
-
-In the headings below, replace the silly names and GitHub handles with your actual ones.
 
 ### Xiaoling Zheng @xlzhen
-will write the....
+- [x] Create the stone (piece), board, (possibly player if necessary) and game classes with member procedures and fields that allows interactions (manipulations) with board, updates informations. The game class would be served as a frame that controls game flow. 
+- [ ] I’ll be focus on the internal structure, might add other stuffs if needed.
 
 ### Ruowei Zhang @rz999
 - [x] GUI/base Create the frame, draw the board on canvas, pict draw the stones. 
