@@ -50,7 +50,7 @@ The boot can draw the stones in a smart way and can win at a ok percentage.
 
 ## Architecture Diagram
 
-![ArchitectureDiagram](https://github.com/oplS17projects/Simple-Gomoku/blob/master/ArchitectureDiagram.png?raw=true)
+![ArchitectureDiagramUpdate](https://github.com/oplS17projects/Simple-Gomoku/blob/master/ArchitectureDiagramUpdate.png?raw=true)
 
 >Our program has two major components: **Game control and Game UI**.
 
