@@ -112,12 +112,28 @@
 ;;(new mouse-event%	 
    	 ;;	[event-type 'left-down]
            ;;     )
+;;get the mouse block apr-7-2017
+;;use get-x get-y to get x and y coords
+;;then find the block
 
+(define (whichblock-x x-coord)
+  (if (= (remainder x-coord 4) 0)
+      (let ([x-block (quotient x-coord 4)])
+    x-block)
+      (let ([x-block (+ 1 (quotient x-coord 4))])
+    x-block)))
+
+(define (whichblock-y y-coord)
+  (if (= (remainder y-coord 4) 0)
+      (let ([y-block (quotient y-coord 4)])
+    y-block)
+      (let ([y-block (+ 1 (quotient y-coord 4))])
+    y-block)))
 
 ;;next step
-;;chaneg the bgc
-;;put the chess onto the board
-;;move the chess
+;;mouse-click draw the stone
+;;steps mod 2. 1 = black 0 = white
+
 ;;AI Algothrim
 ;;UI
 (send frame show #t)
