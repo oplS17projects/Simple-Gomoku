@@ -114,16 +114,16 @@
            ;;     )
 ;;get the mouse block apr-7-2017
 ;;use get-x get-y to get x and y coords
-;;then find the block
-
-(define (whichblock-x x-coord)
+;;later on replace 15 with (send event get-x)
+(let ([x-coord 15])
   (if (= (remainder x-coord 4) 0)
       (let ([x-block (quotient x-coord 4)])
     x-block)
       (let ([x-block (+ 1 (quotient x-coord 4))])
     x-block)))
 
-(define (whichblock-y y-coord)
+;;later on replace 1 with (send event get-y)
+(let ([y-coord 1])
   (if (= (remainder y-coord 4) 0)
       (let ([y-block (quotient y-coord 4)])
     y-block)
