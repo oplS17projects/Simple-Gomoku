@@ -1,5 +1,5 @@
 #lang racket
-(provide goal-test?)
+
 ;; goal tests
 ;;
 ;; 4/7/2017
@@ -15,6 +15,7 @@
 ;; check if contains consecutive 5
 ;;
 
+(provide goal-test?)
 
 (define count 10) ;; if count < 9, non goal-test will be called
 
