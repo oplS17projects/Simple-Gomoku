@@ -1,5 +1,5 @@
 #lang racket
-
+(provide goal-test?)
 ;; goal tests
 ;;
 ;; 4/7/2017
