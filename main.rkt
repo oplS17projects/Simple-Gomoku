@@ -1,6 +1,6 @@
 #lang racket
 
-(require "access-game-info.rkt")
+(require "make-game.rkt")
 (require "calc-best-place-black-stone.rkt")
 
 ;; a game
