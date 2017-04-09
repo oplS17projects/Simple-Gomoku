@@ -1,4 +1,11 @@
 #lang racket
+
+;; make game
+;;
+;; Xiaoling Zheng
+;;
+
+
 (require "classes.rkt")
 (provide make-game)
 
