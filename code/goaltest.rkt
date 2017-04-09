@@ -3,7 +3,9 @@
 ;; goal tests
 ;;
 ;; 4/7/2017
-;; 
+;;
+;; Xiaoling Zheng
+;;
 ;; check horizontal
 ;; get all x-coords
 ;; for each x-coords get all y-coords with certain x
