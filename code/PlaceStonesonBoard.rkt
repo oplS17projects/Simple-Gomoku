@@ -139,6 +139,18 @@
   (let ([color 'white])
     color)))
 
+(require pict)
+;;https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html
+(disk 30)
+
+(disk 30 #:color "White" #:border-color "Black")
+
+(record-icon #:color "Black" #:height 40
+               #:material glass-icon-material)
+
+(record-icon #:color "White" #:height 40
+               #:material glass-icon-material)
+
 ;;to finish
 ;;the board's design(color)
 ;;mouse-move select the block
