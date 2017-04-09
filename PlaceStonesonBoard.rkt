@@ -130,6 +130,15 @@
       (let ([y-block (+ 1 (quotient y-coord 4))])
     y-block)))
 
+;;decide the stone's color
+;;user or boot who has black stones always go first
+(define (stone-color steps)
+  (if (= (remainder steps 2) 1)
+  (let ([color 'black])
+    color)
+  (let ([color 'white])
+    color)))
+
 ;;next step
 ;;mouse-click draw the stone
 ;;steps mod 2. 1 = black 0 = white
