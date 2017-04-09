@@ -139,9 +139,13 @@
   (let ([color 'white])
     color)))
 
-;;next step
+;;to finish
+;;the board's design(color)
+;;mouse-move select the block
 ;;mouse-click draw the stone
 ;;steps mod 2. 1 = black 0 = white
+;;take turns
+;;buttons choose the mode and start/stop
 
 ;;AI Algothrim
 ;;UI
