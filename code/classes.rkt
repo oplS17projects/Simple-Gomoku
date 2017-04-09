@@ -1,12 +1,18 @@
 #lang racket
 
+;; classes
+;;
+;; Xiaoling Zheng
+;;
+;; point (piece), board, game classes 
+;; game class contains all the state variables, accessor $ mutator for state variables
+;;
+
 (require math/matrix)
 (require racket/class)
 (require "goaltest.rkt")
 
 (provide game%)
-
-(define goal-four '((13 1) (14 0) (12 0) (12 2) (11 10) (11 3) (9 4) (10 4))) ;; cross-bottom-left-upper-right
 
 (define square-board-dimension 15)
 ;; dimension of a gomoku board
@@ -57,10 +63,10 @@
 
 (define game%
   (class object%
-    (init-field (Board (make-object board%)))
-    (init-field (PlayerOne (make-object player%))) ;; list of occupied black points initialized to null
-    (init-field (PlayerTwo (make-object player%))) ;; list of occupied white points initialized to null
-    (init-field (count 0))
+    (init-field (Board (make-object board%))) ;; board holds 15 by 15 pieces
+    (init-field (PlayerOne (make-object player%))) ;; player holds black stone
+    (init-field (PlayerTwo (make-object player%))) ;; player holds white stone
+    (init-field (count 0)) ;; counting pieces
     
     (define/public (check-occupancy x y)
       (send Board check-occupancy x y))
@@ -71,7 +77,7 @@
       (set! count (+ count 1))
       (if (< count 9)
           #f
-          (if (goal-test? (black-list)) #t #f)))
+          (if (goal-test? (black-list)) #t #f))) ;; goal test if count > 9
     
     (define/public (set-white x y) ;; public method both update board and add point to lists
       (send Board set-white x y)
@@ -79,9 +85,9 @@
       (set! count (+ count 1))
       (if (< count 9)
           #f
-          (if (goal-test? (white-list)) #t #f)))
+          (if (goal-test? (white-list)) #t #f))) ;; goal test is count > 9
     
-    (define/public (black-list) (get-field points-occupied PlayerOne))
-    (define/public (white-list) (get-field points-occupied PlayerTwo))
+    (define/public (black-list) (get-field points-occupied PlayerOne)) ;; return list of placed black stone coords from object PlayerOne
+    (define/public (white-list) (get-field points-occupied PlayerTwo)) ;; return list of placed white stone coords from object PlayerTwo
     
     (super-new)))
