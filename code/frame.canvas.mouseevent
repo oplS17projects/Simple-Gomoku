@@ -1,0 +1,190 @@
+#lang racket
+;;last modified Apr-09-2017 10:00 pm
+
+
+(require racket/gui)
+(require racket/draw)
+(require pict images/icons/control images/icons/style)
+(require images/icons/symbol)
+(require pict images/icons/control images/icons/style)
+;;(require htdp/world)
+;;(require racket/draw)
+;;(require images/icons/misc)
+;;(require images/icons/stickman)
+;;(require games/gl-board-game)
+;;(require lang/posn htdp/draw)
+
+;;color database
+;;https://docs.racket-lang.org/draw/color-database___.html
+
+;;create a 600x600 board
+;;the board is 15x15
+;;the block is 40x40
+
+(define board-size 600)
+(define block-size 40)
+(define square-board-dimension 15)
+
+(define no-pen (new pen% [style 'transparent]))
+(define no-brush (new brush% [style 'transparent]))
+
+
+;;initial the game with steps 0 and no winner yet
+(define (make-game)
+  (let ((game (make-object game%))
+        ;;merge with xlz's class later on
+        (steps 0)
+        (winner 0)
+        (highlight-block null))
+    (define (reset-game)
+      (begin
+        (send game reset)
+        (set! steps 0)
+        (set! winner 0)
+        (set! highlight-block null)))
+
+;;create the frame
+;;https://docs.racket-lang.org/gui/frame_.html?q=frame
+;;the buttons has 150 size
+    
+    (define frame
+      (new frame%
+           [label "Simple Gomoku"]
+           [width board-size]
+           [height (+ board-size 150)]
+           [style (list 'no-resize-border)]))
+
+    (define board-canvas%
+      (class canvas%
+        (inherit get-dc)
+        (inherit refresh-now)
+
+;;using get-x and get-y to get the mouse coords
+;;create the blocks two-color-blocks altenately
+        
+        
+        (define/public (draw-block block)
+          (let ((x (send block get-x))
+                (y (send block get-y)))
+            (begin
+              (send (get-dc) set-pen no-pen)
+              (if (even? (+ x y))
+                  (send (get-dc) set-brush "white" 'solid)
+                  (send (get-dc) set-brush "AntiqueWhite" 'solid))
+              ;;might change  the color later on
+              (send (get-dc) draw-rectangle
+                    (* x block-size)
+                    (* y block-size)
+                    block-size
+                    block-size)
+              (let ((stone (send block get-stone)))
+                (if (not (null? stone))
+                    (draw-stone stone x y)
+                    void)))))
+        (define/public (draw-stone stone x y)
+          (send (get-dc) draw-bitmap
+                (send stone get-color)
+                (+ (* x block-size) 4)
+                (+ (* y block-size) 4)))
+
+        (define/public (show-block-border x y)
+          (begin
+            (send (get-dc) set-pen "black" 3 'solid)
+            (send (get-dc) set-brush no-brush)
+            (send (get-dc) draw-rectangle
+                  (* x block-size)
+                  (* y block-size)
+                  block-size
+                  block-size)))
+
+        ;; mouse event callback
+        (define/override (on-event event)
+          (let ((block-x (quotient (send event get-x) block-size))
+                (block-y (quotient (send event get-y) block-size)))
+            (let ((block (send game block-pos block-x block-y)))
+              (cond
+                ;; mouse-left-click
+                ((eq? 'left-down (send event get-event-type))
+                 (begin (if (null? (send block get-stone))
+                            (begin (send game put-stone block steps)
+                                   (set! steps (+ steps 1))
+                                   (send msg set-label
+                                         (string-append "Step: " (number->string steps))))
+                            void)
+                        (refresh-now)))
+                ;; mouse-over
+                ((eq? 'motion (send event get-event-type))
+                 ((lambda (x y)
+                    (if (not (eq? block highlight-block))
+                        (begin (refresh-now)
+                               (show-block-border x y)
+                               (set! highlight-block block))
+                        void))
+                  block-x
+                  block-y))))))
+        (super-new)))
+
+    (new board-canvas%
+         [parent frame]
+         [min-width board-size]
+         [min-height board-size]
+         (paint-callback (lambda (canvas dc)
+                           (map (lambda (block)
+                                  (send canvas draw-block block))
+                                (send game get-blocks)))))
+    ;;the white and black stones
+        ;;https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html
+
+    ;;create the buttons
+    ;;https://docs.racket-lang.org/gui/button_.html
+
+    ;;text icon
+    ;;http://docs.racket-lang.org/images/Icons.html#%28part._.About_.These_.Icons%29
+
+    ;;make font
+    ;;http://docs.racket-lang.org/draw/Drawing_Functions.html#%28def._%28%28lib._racket%2Fdraw..rkt%29._make-font%29%29
+    
+    (define msg-panel (new horizontal-panel% [parent frame]))
+
+    (define msg (new message% [parent msg-panel] [label "Please Start the Game!"]))
+
+    (define mode-panel (new horizontal-panel% (parent frame)))
+
+    (new button% [parent mode-panel]
+         [label (text-icon "PVP mode"
+                           (make-font #:weight 'normal #:underlined? #f)
+                           #:color "Orange Red" #:height 30)]
+         ; Callback procedure for a button click:
+         [callback (lambda (button event)
+                     (send msg set-label "PVP"))])
+
+    (new button% [parent mode-panel]
+         [label (text-icon "PVE mode"
+                           (make-font #:weight 'normal #:underlined? #f)
+                           #:color "Orange Red" #:height 30)]
+         ; Callback procedure for a button click:
+         [callback (lambda (button event)
+                     (send msg set-label "PVE"))])
+
+    (define start-stop-panel (new horizontal-panel% (parent frame)))
+
+    (new button% [parent start-stop-panel]
+         [label (text-icon "Start!"
+                           (make-font #:weight 'normal #:underlined? #f)
+                           #:color "Green Yellow" #:height 30)]
+         ; Callback procedure for a button click:
+         [callback (lambda (button event)
+                     (send msg set-label "Gomoku Started"))])
+
+    (new button% [parent start-stop-panel]
+         [label (text-icon "Stop!"
+                           (make-font #:weight 'normal #:underlined? #f)
+                           #:color "Orange Red" #:height 30)]
+         ; Callback procedure for a button click:
+         [callback (lambda (button event)
+                     (reset-game)
+                     (send msg set-label "Gomoku Stopped"))])
+
+    (send frame show #t)))
+
+(make-game)
