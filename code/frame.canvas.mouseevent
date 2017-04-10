@@ -21,9 +21,11 @@
 ;;the board is 15x15
 ;;the block is 40x40
 
+;;xlz's dimension of a gomoku board
 (define board-size 600)
 (define block-size 40)
 (define square-board-dimension 15)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (define no-pen (new pen% [style 'transparent]))
 (define no-brush (new brush% [style 'transparent]))
@@ -45,7 +47,7 @@
 
 ;;create the frame
 ;;https://docs.racket-lang.org/gui/frame_.html?q=frame
-;;the buttons has 150 size
+;;the buttons has size: 150
     
     (define frame
       (new frame%
@@ -59,11 +61,12 @@
         (inherit get-dc)
         (inherit refresh-now)
 
-;;using get-x and get-y to get the mouse coords
+
 ;;create the blocks two-color-blocks altenately
         
         
         (define/public (draw-block block)
+        ;;using xlz's get-x and get-y to get the mouse coords
           (let ((x (send block get-x))
                 (y (send block get-y)))
             (begin
@@ -144,6 +147,9 @@
     ;;make font
     ;;http://docs.racket-lang.org/draw/Drawing_Functions.html#%28def._%28%28lib._racket%2Fdraw..rkt%29._make-font%29%29
     
+    ;;make the buttons horizontally
+    ;;pvp or pve
+    ;;start or stop
     (define msg-panel (new horizontal-panel% [parent frame]))
 
     (define msg (new message% [parent msg-panel] [label "Please Start the Game!"]))
