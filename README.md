@@ -98,17 +98,18 @@ UI Improvenment.
 ## Group Responsibilities
 
 ### Xiaoling Zheng @xlzhen
-- [ ] Create the stone (piece), board, (possibly player if necessary) and game classes with member procedures and fields that allows interactions (manipulations) with board, updates informations. The game class would be served as a frame that controls game flow. 
+- [x] Create the stone (piece), board, (possibly player if necessary) and game classes with member procedures and fields that allows interactions (manipulations) with board, updates informations. The game class would be served as a frame that controls game flow.
+- [x] Winning algorithm (Goal test) design.
 - [ ] I’ll be focus on the internal structure, might add other stuffs if needed.
 
 ### Ruowei Zhang @rz999
 - [x] GUI/base Create the frame, draw the board on canvas, draw the stones using icon. 
-- [ ] Mode option and start/stop options. Any other frame work.
-- [ ] Use GUI mouseevent draw the stone and make connection with Xiaoling’s classes.
+- [x] Mode option and start/stop options. Any other frame work.
+- [x] Use GUI mouseevent draw the stone
+- [ ] make connection with Xiaoling’s classes.
 - [ ] Music or sound effects during the game or at the end(winning).
 
 
 ### Together
-- [ ] Winning algorithm (Goal test) design.
 - [ ] PVE AI
  
