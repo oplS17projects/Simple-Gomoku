@@ -19,16 +19,6 @@
 
 (provide goal-test?)
 
-(define count 10) ;; if count < 9, non goal-test will be called
-
-;; test cases
-(define list1 '((1 2) (3 4) (5 6) (2 2) (9 3) (5 2) (6 2)))
-(define goal-one '((1 2) (1 3) (1 4) (1 5) (1 6)))
-(define goal-two '((1 1) (2 1) (3 1) (4 1) (5 1)))
-(define goal-three '((1 0) (1 1) (2 2) (3 3) (4 4) (5 5))) ;; cross-upper-left-bottom-right
-(define list2 '((1 1) (1 5) (2 2) (3 3) (4 4)))
-(define goal-four '((13 1) (14 0) (12 0) (12 2) (11 10) (11 3) (9 4) (10 4))) ;; cross-bottom-left-upper-right
-
 (define (goal-test? coord-list)
   (or (check-vertical? coord-list)
       (check-horizontal? coord-list)
