@@ -63,10 +63,12 @@
 
 (define game%
   (class object%
-    (init-field (Board (make-object board%))) ;; board holds 15 by 15 pieces
-    (init-field (PlayerOne (make-object player%))) ;; player holds black stone
-    (init-field (PlayerTwo (make-object player%))) ;; player holds white stone
-    (init-field (count 0)) ;; counting pieces
+    (init-field (Board (make-object board%))) 
+    (init-field (board-string (make-string 225 #\e))) ;; a field holds board as a string  
+    (init-field (PlayerOne (make-object player%))) ;; list of occupied black points initialized to null
+    (init-field (PlayerTwo (make-object player%))) ;; list of occupied white points initialized to null
+    (init-field (count 0))
+    (init-field (winner 'none))
     
     (define/public (check-occupancy x y)
       (send Board check-occupancy x y))
@@ -74,20 +76,39 @@
     (define/public (set-black x y) ;; public method both update board and add point to lists
       (send Board set-black x y) 
       (send PlayerOne set-piece x y)
+      (string-set! board-string (+ y (* x 15)) #\b)
       (set! count (+ count 1))
       (if (< count 9)
           #f
-          (if (goal-test? (black-list)) #t #f))) ;; goal test if count > 9
+          (cond [(goal-test? (black-list)) (set! winner 'black)
+                                           #t]
+                [else #f])))
     
     (define/public (set-white x y) ;; public method both update board and add point to lists
       (send Board set-white x y)
       (send PlayerTwo set-piece x y)
+      (string-set! board-string (+ y (* x 15)) #\w)
       (set! count (+ count 1))
       (if (< count 9)
           #f
-          (if (goal-test? (white-list)) #t #f))) ;; goal test is count > 9
+          (cond [(goal-test? (white-list)) (set! winner 'white)
+                                           #t]
+                [else #f])))
     
-    (define/public (black-list) (get-field points-occupied PlayerOne)) ;; return list of placed black stone coords from object PlayerOne
-    (define/public (white-list) (get-field points-occupied PlayerTwo)) ;; return list of placed white stone coords from object PlayerTwo
+    (define/public (black-list) (get-field points-occupied PlayerOne))
+    (define/public (white-list) (get-field points-occupied PlayerTwo))
+
+    (define/public (reset)
+      (set! count 0)
+      (set! winner 'none)
+      (set! board-string (make-string 225 #\e))
+      (set! PlayerOne (make-object player%))
+      (set! PlayerTwo (make-object player%))
+      (set! Board (make-object board%)))
+    
+    (define/public (set-piece x y)
+      (if (= (remainder count 2) 0)
+          (set-black x y)
+          (set-white x y)))
     
     (super-new)))
