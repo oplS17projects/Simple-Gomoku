@@ -106,7 +106,7 @@ UI Improvenment.
 - [x] GUI/base Create the frame, draw the board on canvas, draw the stones using icon. 
 - [x] Mode option and start/stop options. Any other frame work.
 - [x] Use GUI mouseevent draw the stone
-- [ ] make connection with Xiaoling’s classes.
+- [x] make connection with Xiaoling’s classes.
 - [ ] Music or sound effects during the game or at the end(winning).
 
 
