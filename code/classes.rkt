@@ -1,12 +1,9 @@
 #lang racket
 
 ;; classes
-;;
-;; Xiaoling Zheng
-;;
-;; point (piece), board, game classes 
-;; game class contains all the state variables, accessor $ mutator for state variables
-;;
+;; Apr-16-2017
+;; The purpose of writing this file is to create useful classes.
+;; It inclues game, board, point(block+stone), and player classes.
 
 (require math/matrix)
 (require racket/class)
@@ -19,7 +16,7 @@
 
 (struct Point (x y))
 
-;; represent one point
+;; represent one point 
 ;; call point(x y) to create a structure point
 ;; call point-x-coordinate to get x-coordinate
 ;; call point-y-coordinate to get y-coordinate
@@ -50,16 +47,22 @@
     (super-new)))
 ;; a new board-class with a board constructed by point-class
 
+
+;; there will be two players. either 2 people, or a person and a boot.
+;; set-stone use count(step) to decides if the stone should
+;; be black or white.
 (define player%
   (class object%
     (init-field (points-occupied '()))
-    (define/public (set-piece x y)
+    (define/public (set-stone x y)
       (set! points-occupied (cons (list x y) points-occupied)))
     (super-new)))
 
 (define player-one? 'Black)
 (define player-two? 'White)
 
+
+;; this class controls the game.
 
 (define game%
   (class object%
@@ -69,13 +72,14 @@
     (init-field (PlayerTwo (make-object player%))) ;; list of occupied white points initialized to null
     (init-field (count 0))
     (init-field (winner 'none))
+    (init-field (pve #f))
     
     (define/public (check-occupancy x y)
       (send Board check-occupancy x y))
     
     (define/public (set-black x y) ;; public method both update board and add point to lists
       (send Board set-black x y) 
-      (send PlayerOne set-piece x y)
+      (send PlayerOne set-stone x y)
       (string-set! board-string (+ y (* x 15)) #\b)
       (set! count (+ count 1))
       (if (< count 9)
@@ -86,7 +90,7 @@
     
     (define/public (set-white x y) ;; public method both update board and add point to lists
       (send Board set-white x y)
-      (send PlayerTwo set-piece x y)
+      (send PlayerTwo set-stone x y)
       (string-set! board-string (+ y (* x 15)) #\w)
       (set! count (+ count 1))
       (if (< count 9)
@@ -98,15 +102,18 @@
     (define/public (black-list) (get-field points-occupied PlayerOne))
     (define/public (white-list) (get-field points-occupied PlayerTwo))
 
+    ;;reset the game
     (define/public (reset)
       (set! count 0)
+      (set! pve #f)
       (set! winner 'none)
       (set! board-string (make-string 225 #\e))
       (set! PlayerOne (make-object player%))
       (set! PlayerTwo (make-object player%))
       (set! Board (make-object board%)))
     
-    (define/public (set-piece x y)
+  ;;the set-stone function  
+    (define/public (set-stone x y)
       (if (= (remainder count 2) 0)
           (set-black x y)
           (set-white x y)))
