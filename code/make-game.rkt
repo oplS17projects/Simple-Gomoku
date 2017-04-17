@@ -1,9 +1,8 @@
 #lang racket
 
-;; make game
-;;
-;; Xiaoling Zheng
-;;
+;; make-game
+;; Apr-17-2017
+;; dispatch for a game object
 
 (require "classes.rkt")
 (provide make-game)
