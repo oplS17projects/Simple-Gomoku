@@ -19,6 +19,8 @@
            [(equal? m 'count?) (get-field count G)] ;; return # of placed stones
            [(equal? m 'board-string) (get-field board-string G)]
            [(equal? m 'winner?) (get-field winner G)]
+           [(equal? m 'pve?) (get-field pve G)]
            [(equal? m 'reset) (send G reset)]
-           [(equal? m 'set-piece) (lambda (x y)(send G set-piece x y))]))
+           [(equal? m 'set-stone) (lambda (x y)(send G set-stone x y))]))
     dispatch))
+;;;
