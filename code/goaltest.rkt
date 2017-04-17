@@ -1,11 +1,11 @@
 #lang racket
 
-;; goal tests
-;;
-;; 4/7/2017
-;;
-;; Xiaoling Zheng
-;;
+;; goal test
+;; Apr-7-2018
+;; The purpose of writing this file is to test if there are 5 consecutive stones
+;; on either horizontal, vertical or diagonal directions.
+
+
 ;; check horizontal
 ;; get all x-coords
 ;; for each x-coords get all y-coords with certain x
