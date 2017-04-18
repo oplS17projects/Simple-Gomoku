@@ -205,20 +205,26 @@
     (define mode-panel (new horizontal-panel% (parent frame)))
 
     (new button% [parent mode-panel]
-         [label (text-icon "PVP mode"
+         [label (text-icon "PVP!"
                            (make-font #:weight 'normal #:underlined? #f)
                            #:color "LavenderBlush" #:height 30)]
+          
          ; Callback procedure for a button click:
          [callback (lambda (button event)
-                     (send msg set-label "PVP"))])
+                     (send msg set-label "PVP"))]
+         [horiz-margin 100]
+         [min-width 150])
 
     (new button% [parent mode-panel]
-         [label (text-icon "PVE mode"
+         [label (text-icon "PVP!"
                            (make-font #:weight 'normal #:underlined? #f)
                            #:color "LavenderBlush" #:height 30)]
+          
          ; Callback procedure for a button click:
          [callback (lambda (button event)
-                     (send msg set-label "PVE"))])
+                     (send msg set-label "PVP"))]
+         [horiz-margin 100]
+         [min-width 150])
 
     (define start-stop-panel (new horizontal-panel% (parent frame)))
 
@@ -228,7 +234,9 @@
                            #:color "PaleTurquoise" #:height 30)]
          ; Callback procedure for a button click:
          [callback (lambda (button event)
-                     (send msg set-label "Gomoku Started"))])
+                     (send msg set-label "Gomoku Started"))]
+         [horiz-margin 100]
+         [min-width 150])
 
     ;;callback for stop button
     (new button% [parent start-stop-panel]
@@ -238,7 +246,9 @@
          ;; Callback procedure for a button click, reset the game.
          [callback (lambda (button event)
                      (reset-game)
-                     (send msg set-label "Gomoku Stopped"))])
+                     (send msg set-label "Gomoku Stopped"))]
+         [horiz-margin 0]
+         [min-width 150])
     
     (send frame show #t)))
 
