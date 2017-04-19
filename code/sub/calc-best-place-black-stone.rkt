@@ -1,10 +1,24 @@
 #lang racket
 
+;; works as a stub function ;;
+
 (provide calc-black-stone)
+
+(define list1 '((1 1) (1 2) (3 4) (5 6) (3 5))) ;; test list
+(define list2 '((3 1) (10 2) (3 14) (9 6) (0 5))) ;; test list
 
 
 (define (calc-black-stone placed-black-stones placed-white-stones)
-  (list 1 1)) ;; testing procedure which will always place black-piece to 1 1
+  (define (check a b)
+    (if (and (not (member (list a b) placed-black-stones))
+             (not (member (list a b) placed-white-stones)))
+        (list a b)
+        (if (= a 14)
+            (check 0 (+ b 1))
+            (check (+ a 1) b))))
+  (check 1 1)
+)
+;; testing procedure which will always place black-piece to 1 1
 
 ;; list all the threats
 ;; creating fork
