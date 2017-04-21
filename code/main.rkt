@@ -1,7 +1,8 @@
 #lang racket
 
 ;; main
-;; Apr-17-2017
+;; Apr-20-2017
+
 
 
 (require racket/gui)
@@ -65,13 +66,13 @@
     
     ;;create the frame
     ;;https://docs.racket-lang.org/gui/frame_.html?q=frame
-    ;;the buttons has size: 150
+    ;;the buttons has board size: 132
     
     (define frame
       (new frame%
            [label "Simple Gomoku"]
            [width board-size]
-           [height (+ board-size 150)]
+           [height (+ board-size 132)]
            [style (list 'no-resize-border)]))
 
     (define board%
@@ -123,18 +124,22 @@
                               ((game 'set-stone) block-x block-y);; (set-stone)
                               void)
                           ;;PVE mode
+                          ;;;;;;;;;;add the AI function here!!!!!!!!;;;;;;;;;;;;;;;;;;
                           (if (eq? #t (game 'pve?))
-                              ((game 'set-stone) (game 'pve-pos))
+                              (begin ;;(game 'get-pve-pos) this is the calc-black-stone's coord
+                                ;;;;;;;;this is just for testing;;;;;;;;
+                                ((game 'set-stone) 1 1))
                               void)
                           ;;step=count
                           ;;3 different cases. Black wins. White wins. Draw.
+                          ;;Give a message to user to let the user click 'Reset' button.
                           (send msg set-label (string-append "Step: " (number->string (game 'count?))))
                           (cond [(= (game 'count?) 225)
-                                 (send msg set-label (string-append "Draw: " (number->string (game 'count?))))]
+                                 (send msg set-label (string-append "Draw: " (number->string (game 'count?))". Please Reset the Game"))]
                                 [(equal? (game 'winner?) 'black)
-                                 (send msg set-label (string-append "Black Wins At step: " (number->string (game 'count?))))]
+                                 (send msg set-label (string-append "At step: " (number->string (game 'count?))". Please Reset the Game"))]
                                 [(equal? (game 'winner?) 'white)
-                                 (send msg set-label (string-append "White Wins At step: " (number->string (game 'count?))))])
+                                 (send msg set-label (string-append "At step: " (number->string (game 'count?))". Please Reset the Game"))])
                           (refresh-now))
                    void))
               ;; mouse-over
@@ -152,7 +157,7 @@
                    void)))))
         (super-new)))
     
-   
+   ;;draw image on the canvas
     (define board-canvas (new board%
                               [parent frame]
                               [min-width board-size]
@@ -198,56 +203,67 @@
     ;;pvp or pve
     ;;start or stop
 
+    
+    ;;mode-panel & start-stop panel
     (define msg-panel (new horizontal-panel% [parent frame]))
 
-    (define msg (new message% [parent msg-panel] [label "Please Start the Game!"]))
+    ;;message when running
+    (define msg (new message% [parent msg-panel] [label "Please Choose A Mode. The Default is PVP"]))
 
     (define mode-panel (new horizontal-panel% (parent frame)))
 
+    ;;Create 3 buttons and their call-backs
     (new button% [parent mode-panel]
-         [label (text-icon "PVP!"
+         [label (text-icon "PVP mode"
                            (make-font #:weight 'normal #:underlined? #f)
                            #:color "LavenderBlush" #:height 30)]
-          
          ; Callback procedure for a button click:
          [callback (lambda (button event)
-                     (send msg set-label "PVP"))]
-         [horiz-margin 100]
+                     (begin
+                       (send msg set-label "PVP")
+                       ((game 'set-pve) #f)))]
+         [horiz-margin 50]
          [min-width 150])
 
     (new button% [parent mode-panel]
-         [label (text-icon "PVP!"
+         [label (text-icon "PVE mode"
                            (make-font #:weight 'normal #:underlined? #f)
                            #:color "LavenderBlush" #:height 30)]
-          
          ; Callback procedure for a button click:
          [callback (lambda (button event)
-                     (send msg set-label "PVP"))]
-         [horiz-margin 100]
+                     (begin
+                       (send msg set-label "PVE")
+                       ((game 'set-pve) #t)
+                       ;;always draw the first black stone on (7,7)
+                       ((game 'set-stone) 7 7)
+                       ;;use refresh-now to make display 
+                       (send board-canvas refresh-now)
+                      ))]
+         [horiz-margin 50]
          [min-width 150])
 
     (define start-stop-panel (new horizontal-panel% (parent frame)))
 
-    (new button% [parent start-stop-panel]
-         [label (text-icon "Start!"
-                           (make-font #:weight 'normal #:underlined? #f)
-                           #:color "PaleTurquoise" #:height 30)]
+    ;(new button% [parent start-stop-panel]
+         ;[label (text-icon "Start!"
+                           ;(make-font #:weight 'normal #:underlined? #f)
+                           ;#:color "PaleTurquoise" #:height 30)]
          ; Callback procedure for a button click:
-         [callback (lambda (button event)
-                     (send msg set-label "Gomoku Started"))]
-         [horiz-margin 100]
-         [min-width 150])
+         ;[callback (lambda (button event)
+                     ;(send msg set-label "Gomoku Started"))])
 
     ;;callback for stop button
     (new button% [parent start-stop-panel]
-         [label (text-icon "Stop!"
+         [label (text-icon "Reset!"
                            (make-font #:weight 'normal #:underlined? #f)
                            #:color "PaleTurquoise" #:height 32)]
          ;; Callback procedure for a button click, reset the game.
          [callback (lambda (button event)
-                     (reset-game)
-                     (send msg set-label "Gomoku Stopped"))]
-         [horiz-margin 0]
+                     (begin
+                       (reset-game)
+                       (send msg set-label "Reset is done! The Default Mode is PVP")
+                       (send board-canvas refresh-now)))]
+         [horiz-margin 200]
          [min-width 150])
     
     (send frame show #t)))
