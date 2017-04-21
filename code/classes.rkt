@@ -63,7 +63,6 @@
 
 
 ;; this class controls the game.
-
 (define game%
   (class object%
     (init-field (Board (make-object board%))) 
