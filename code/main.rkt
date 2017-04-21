@@ -12,6 +12,7 @@
 (require pict images/icons/control images/icons/style)
 
 (require "make-game.rkt")
+(require "ai.rkt")
 
 ;;color database
 ;;https://docs.racket-lang.org/draw/color-database___.html
@@ -126,9 +127,11 @@
                           ;;PVE mode
                           ;;;;;;;;;;add the AI function here!!!!!!!!;;;;;;;;;;;;;;;;;;
                           (if (eq? #t (game 'pve?))
-                              (begin ;;(game 'get-pve-pos) this is the calc-black-stone's coord
-                                ;;;;;;;;this is just for testing;;;;;;;;
-                                ((game 'set-stone) 1 1))
+                              (begin 
+                               ;;the AI function to calculate best place to draw the stone
+                                (let ((new-stone (calc-stone (game 'get-black-list) (game 'get-white-list))))
+                                     ((game 'set-stone) (car new-stone) (cadr new-stone))))
+                              ;; new-stone calc-stone((game 'get-black-list) (game 'get-white-list))
                               void)
                           ;;step=count
                           ;;3 different cases. Black wins. White wins. Draw.
@@ -220,7 +223,7 @@
          ; Callback procedure for a button click:
          [callback (lambda (button event)
                      (begin
-                       (send msg set-label "PVP")
+                       (send msg set-label "PVP Mode is chosen")
                        ((game 'set-pve) #f)))]
          [horiz-margin 50]
          [min-width 150])
@@ -232,9 +235,9 @@
          ; Callback procedure for a button click:
          [callback (lambda (button event)
                      (begin
-                       (send msg set-label "PVE")
+                       (send msg set-label "PVE Mode is chosen")
                        ((game 'set-pve) #t)
-                       ;;always draw the first black stone on (7,7)
+                       ;;always draw the first black stone on (7,7) if PVE button is clicked
                        ((game 'set-stone) 7 7)
                        ;;use refresh-now to make display 
                        (send board-canvas refresh-now)
@@ -254,7 +257,7 @@
 
     ;;callback for stop button
     (new button% [parent start-stop-panel]
-         [label (text-icon "Reset!"
+         [label (text-icon "New Game"
                            (make-font #:weight 'normal #:underlined? #f)
                            #:color "PaleTurquoise" #:height 32)]
          ;; Callback procedure for a button click, reset the game.
