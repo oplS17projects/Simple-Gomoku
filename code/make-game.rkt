@@ -1,7 +1,7 @@
 #lang racket
 
 ;; make-game
-;; Apr-17-2017
+;; Apr-2--2017
 ;; dispatch for a game object
 
 (require "classes.rkt")
@@ -19,6 +19,10 @@
            [(equal? m 'board-string) (get-field board-string G)]
            [(equal? m 'winner?) (get-field winner G)]
            [(equal? m 'pve?) (get-field pve G)]
+           ;;set-pve: set the mode
+           [(equal? m 'set-pve) (lambda (t) (send G set-pve t))]
+           ;;get-pve-pos? this is the calc-black-stone function in sub folder!
+           [(equal? m 'get-pve-pos?) (send G get-pve-pos)]
            [(equal? m 'reset) (send G reset)]
            [(equal? m 'set-stone) (lambda (x y)(send G set-stone x y))]))
     dispatch))
