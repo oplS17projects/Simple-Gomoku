@@ -117,5 +117,15 @@
       (if (= (remainder count 2) 0)
           (set-black x y)
           (set-white x y)))
+       
+   ;;calc-black-stone
+    (define/public (get-pve-pos)
+      void
+      )
+
+    ;;set mode
+    (define/public (set-pve t)
+      (set! pve t)
+      )
     
     (super-new)))
