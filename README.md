@@ -102,7 +102,7 @@ UI Improvenment.
 ### Ruowei Zhang @rz999
 - [x] GUI/base Create the frame, draw the board on canvas, draw the stones using icon, create all buttons. 
 - [x] Implemented Mode option and NewGame buttons, have call-back functions done, and control the game. Any other frame work.
-- [x] Use GUI mouseevent highlight the block while mouse-move, draw the stone while mouse-click (use count to control the color, make it with black and white alternately).
+- [x] Use GUI mouseevent highlight the block while mouse-move, draw the stone while mouse-click (use count to control the color, make it with black and white alternately). Refresh the canvas.
 - [x] Make connection with Xiaoling’s classes and goal test. Add PVE mode mouse-events.
 - [x] Show the winning figure and freeze the canvas while one side wins. Finish PVP mode.
 
