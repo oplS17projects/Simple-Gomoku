@@ -34,6 +34,9 @@
     y-block)
       (let ([y-block (+ 1 (quotient y-coord 4))])
     y-block)))
+    
+    
+   
 
 ;;decide the stone's color
 ;;user or boot who has black stones always go first
@@ -43,6 +46,14 @@
     color)
   (let ([color 'white])
     color)))
+    
+ (define (reset)
+     (define (reset-block b)
+     (let ((x ((b 'get-x)))
+           (y ((b 'get-y)))
+          (set-stone (b 'set-stone)))
+        (set-stone '())))
+        (map reset-block blocks))
 
 (require pict)
 ;;https://docs.racket-lang.org/pict/Basic_Pict_Constructors.html
