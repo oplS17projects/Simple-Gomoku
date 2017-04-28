@@ -94,7 +94,7 @@ UI Improvenment.
 ### Xiaoling Zheng @xlzhen
 
 - [x] Architecture diagram 
-- [x] Create the stone (piece), board, (possibly player if necessary) and game classes with member procedures and fields that allows interactions (manipulations) with board, updates informations. The game class would be served as a frame that controls game flow.  (classes.rkt)
+- [x] Create the stone (piece), board,and game classes with member procedures and fields that allows interactions (manipulations) with board, updates informations. The game class would be served as a frame that controls game flow.  (classes.rkt)
 - [x] Winning algorithm (Goal test) design. (goal-test.rkt)
 - [x] make-game (dispatch for game class). (make-game.rkt)
 
