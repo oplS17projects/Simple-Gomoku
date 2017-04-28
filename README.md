@@ -94,10 +94,10 @@ UI Improvenment.
 ### Xiaoling Zheng @xlzhen
 
 - [x] Architecture diagram 
-- [x] Create and updated the point, board, player and game classes with member procedures and fields that allows interactions (manipulations) with board, updates informations, procedures return values that help control game flow. (classes.rkt)
-- [x] Winning algorithm (Goal test) embedded in game class (goal-test.rkt)
-- [x] make-game (dispatch for game class) provide object to main (make-game.rkt)
-- [ ] working on creating fork patterns - for pve mode searching optimal position
+- [x] Create and updated the point, board, player and game classes with member procedures and fields that allows interactions (manipulations) with board, updates informations, methods return values that help control game flow. (classes.rkt)
+- [x] Winning algorithm (Goal test) embedded in game class's methods (set-white/ set-black) (goal-test.rkt)
+- [x] make-game (dispatch for game class) - able to play game in PVP mode without GUI (make-game.rkt)
+- [ ] working on creating fork patterns - for pve mode searching optimal position (prototype in code/sub/forks.rkt)
 
 ### Ruowei Zhang @rz999
 
