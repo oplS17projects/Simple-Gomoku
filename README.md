@@ -94,10 +94,10 @@ UI Improvenment.
 ### Xiaoling Zheng @xlzhen
 
 - [x] Architecture diagram 
-- [x] Create the stone (piece), board,and game classes with member procedures and fields that allows interactions (manipulations) with board, updates informations. The game class would be served as a frame that controls game flow.  (classes.rkt)
-- [x] Winning algorithm (Goal test) design. (goal-test.rkt)
-- [x] make-game (dispatch for game class). (make-game.rkt)
-- [ ] working on creating fork patterns
+- [x] Create and updated the point, board, player and game classes with member procedures and fields that allows interactions (manipulations) with board, updates informations, procedures return values that help control game flow. (classes.rkt)
+- [x] Winning algorithm (Goal test) embedded in game class (goal-test.rkt)
+- [x] make-game (dispatch for game class) provide object to main (make-game.rkt)
+- [ ] working on creating fork patterns - for pve mode searching optimal position
 
 ### Ruowei Zhang @rz999
 
