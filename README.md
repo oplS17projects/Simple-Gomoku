@@ -1,75 +1,73 @@
 # Simple-Gomoku
 
 ### Statement
-Our project is to create a **simple Gomoku game**. Gomoku is a 15 by 15 strategic board game which is popular in Asian countries. We believe it would be nice if we can implement one via Scheme. We plans to implement a Gomoku game that allows two game modes: two players play against each others (PvP) and one player play against an AI (PvE). Currently, we have several pieces done (created several classes via racket/class, drew board, stones and on-click buttons via racket/gui, etc.). 
+Our project creates a **simple Gomoku game**. Gomoku is a 15 by 15 strategic board game which is popular in Asian countries. The Gomoku game allows two game modes: two players play against each others (PVP) and one player plays against an AI (PVE).
 
 ### Analysis
->We use data structure matrix in our project. To be specific, we have a matrix named *Board* in our Board class, each element in the >matrix is a piece object representing one location that we can place a stone on. By using matrix, there’s no need to refer to each >piece and we can easily get access and manipulate. Another example of data abstraction is a point structure that we used for >representing x and y coordinates. 
+We have used data structure list in our project. To be specific, we have a list named *Board* in our Board class. Each element in the list is a piece object representing one block that the player can place a stone on. By using list, there’s no need to refer to each piece and we can easily get access and manipulate. Another example of data abstraction is a point structure that we used for representing x and y coordinates. 
 
->We will make a *Piece* class, which contains the occupied status, coordinates. The *Board* class which holds 15 by 15 stones in the >form of matrix with procedures allows manipulations; and a *Game* class where the game takes place on. It basically creates an abstract >interface that allows the manipulation of stones. It lets the players place stones in turns, updates boards, and evaluates each >positions based on current board for PvE mode. 
+We have created a *Piece* class, which contains the occupied status, and coordinates. The *Board* class which holds 15 by 15 stones in the form of list with procedures allows manipulations; and a *Game* class where the game takes place on. It basically creates an abstract interface that allows the manipulation of stones. It lets the players place stones in turns, updates boards, and evaluates each positions based on current board for PVE mode. 
 
->Since we have a matrix of stones, it would be extremely helpful to use filter to manipulate the stones in matrix. One usage we are >thinking about is to use filter to filter out the isolated stones.We keep the same-color stones in a new matrix and use recursive >function to detect if the same color stones are 4-in-a-row, 3-in-a-row in horizontal, vertical or diagonal directions while making >decision about where the computer should draw the next stone. We are also planning to use filter to find stones that satisfies certain >features.
+Since we have a list of stones' coordinates, we decided to use filter to manipulate the stones. We used filter to find stones that satisfies certain features.One usage we have done is to use filter to get all coordinates which are not occupied. We keep the same-color stones in a new list and use recursive function to detect if the same-color stones are 5-in-a-row in horizontal, vertical or diagonal directions while making decision about which side wins the game.
 
->Even though mostly our program is constructed based on classes/imperative programming approaches. We will use functional approaches, >for instance, to start the game or do simple calculations that does not hold any states. We will use state-modification approaches. >This is a game, so we need to record game process via states. Specifically, the state-modifications will happen in our classes (for >instance, the updates of board/piece informations). Our classes contain member variables (fields) that will be modified via set! as the >game state proceed. 
+Even though mostly our program is constructed based on classes/imperative programming approaches. We have used functional approaches, for instance, starting the game or doing simple calculations that does not hold any states. We have also used state-modification approaches. This is a game, so we need to record game process via states. Specifically, the state-modifications happened in our classes (for instance, the updates of board/piece informations). Our classes contain member variables (fields) that were modified via set! as the game state proceed. 
 
->We will use lazy evaluation in our PVE AI and winning algorithm. Our recursion function would test from 5-in-a-row then decreasing each >time by 1. Once we find 5-in-a-row in either horizontal, vertical or diagonal direction, we won’t continue testing the rest.
+We have used evaluation in our PVE AI and goal test. Our recursion function would test from 5-in-a-row. Once we find 5-in-a-row in either horizontal, vertical or diagonal direction, we won’t continue testing the rest.
 
-
-### Data Sets or other Source Materials
-
-Currently, we don't have any plan on using data sets or source materials. 
-We might refer to resources on algorithms when we implement our PvE mode. If we do this later on, we will update the references.
 
 ### Deliverable and Demonstration
 
->We will have a 2-D Gomoku game by the end of this project. The demo will show that users can play the game in two modes.
+We currently have a 2-D Gomoku game. It has two modes: PVP and PVE. Users can change the mode easily and make a new game whenever they want.
 
->Our program will be interactive. Player can set stones on the board, depending on the gaming mode, it could be two players interact >with each other or one player interacts with an AI. 
+Our program is interactive. Player can set stones on the board, depending on the game mode. It could be two players interact with each other or one player interacts with an AI. 
+
 
 ### Evaluation of Results
 
+For both modes, the game allows correct interactions (placing stones by clicking on the board, changing modes and making new games using buttons), precisely evaluate win or lose and give correct prompts.
 
-The game should be able to allow correct interactions (placing stones by clicking on the board), precisely evaluate win or lose and give correct prompts.
+For PVE mode, our AI can automaticly draw stones but not in a smart way.
 
 
 **PvP mode**
 
 Two users can play the game and blocking/winning algorithms works.
-Two playesr will be able to place stones in turn.
+Two playesr will be able to place stones in turns.
 
 **PvE mode**
 
-We plan to implement a non-trivial algorithm that is able to choose better positions to place stones. 
 The boot can draw the stones.
+We implemented a non-trivial algorithm that can choose better positions to place stones. 
+
 
 ## Architecture Diagram
 
 ![ArchitectureDiagramUpdate](https://github.com/oplS17projects/Simple-Gomoku/blob/master/ArchitectureDiagramUpdate.png?raw=true)
 
->Our program has two major components: **Game control and Game UI**.
+Our program has two major components: **Game control and Game UI**.
 
->**Game UI**: its an interface that allows player(s) to control the program via **mouse click**. 
+**Game UI**: its an interface that allows player(s) to control the program via **mouse click**. 
 
 **Game Logic**: controls the game flows (with several components as shown in the diagram).
 
->After the UI receives mouse click, our program will process the on-click event and sent to **Game Control**. This part could be >converting board frame coordinates into board class coordnates by scaling.
+After the UI receives mouse click, our program will process the on-click event and sent to **Game Control**. This part could be >converting board frame coordinates into board class coordnates by scaling.
 
 
->**Check states status** will validate the data we get from the mouse-click (for instance, if the player clicks on an invalid piece (the >piece is occupied by another stone already), this will send an error feed back to UI). 
+**Check states status** will validate the data we get from the mouse-click (for instance, if the player clicks on an invalid piece (the >piece is occupied by another stone already), this will send an error feed back to UI). 
 
->After validating the data, the program will **update the game states**. For instance, update board and change the occupied status for >the selected piece object.
+After validating the data, the program will **update the game states**. For instance, update board and change the occupied status for >the selected piece object.
 
->After updating the game states (based on the player's input), the program will test if this player wins the game or not (**goal >test**). 
+After updating the game states (based on the player's input), the program will test if this player wins the game or not (**goal >test**). 
 
->If the game is in **PvP** mode, it will send goal test result and board information back to UI. 
+If the game is in **PvP** mode, it sends goal test result and board information back to UI. 
 
->If the game is in **PvE** mode, it will send the same information only if the goal test is true. If the goal test for player is false, >the program will run algorithm to select best location to place stone and update states again. Then it will do a goal test for our AI >and send back informations to UI for display.
+If the game is in **PvE** mode, it sends the same information only if the goal test is true. If the goal test for player is false, >the program will run algorithm to select best location to place stone and update states again. Then it will do a goal test for our AI >and send back informations to UI for display.
 
->As shown in the **states** box on the upper right corner. The program holds states informations (we have stored it as fields in class >(racket/class)). **Mode** stores either the game is PvP mode or PvE mode. This depends on what the player choose in the beginning of >the game. **Board** stores 15 by 15 **Piece** objects via Matrix. **White-Stones []** and **Black-Stones []** are lists of placed >stones coordinates for easy reference. 
+As shown in the **states** box on the upper right corner. The program holds states informations (we have stored it as fields in class >(racket/class)). **Mode** stores either the game is PvP mode or PvE mode. This depends on what the player choose in the beginning of >the game. **Board** stores 15 by 15 **Piece** objects via Matrix. **White-Stones []** and **Black-Stones []** are lists of placed >stones coordinates for easy reference. 
  
 
->Notes: we use piece to represent each location to place the stone. There are 15 by 15 pieces on a board;
->       we use stone to represent a stone to be placed (there are black and white stones). 
+Notes: we use block to represent each location to place the stone. There are 15 by 15 blocks on a board;
+       we use stone to represent a stone to be placed (there are black and white stones). 
        
 
 ## Schedule
@@ -94,21 +92,28 @@ UI Improvenment.
 ## Group Responsibilities
 
 ### Xiaoling Zheng @xlzhen
+
 - [x] Create the stone (piece), board, (possibly player if necessary) and game classes with member procedures and fields that allows interactions (manipulations) with board, updates informations. The game class would be served as a frame that controls game flow.
 - [x] Winning algorithm (Goal test) design.
-- [x] Dispatch
+- [x] Dispatch, make-game
 - [ ] I’ll be focus on the internal structure, might add other stuffs if needed.
 
 ### Ruowei Zhang @rz999
-- [x] GUI/base Create the frame, draw the board on canvas, draw the stones using icon, create all buttons. 
-- [x] Implemented Mode option and NewGame buttons, have call-back functions done, and control the game. Any other frame work.
-- [x] Use GUI mouseevent highlight the block while mouse-move, draw the stone while mouse-click (use count to control the color, make it with black and white alternately). Refresh the canvas.
+
+- [x] GUI design: Create the frame, draw the board on canvas, draw the stones using bitmap, create all buttons. 
+- [x] Button implementation: Implemented 'Mode option' and 'New Game' buttons, have call-back functions done, and control the game. Any other frame work.
+- [x] Mouseevent implementation: highlight the block while mouse-move, draw the stone while mouse-click. Refresh the canvas after each mouse-event.
+- [x] Useful methods for PVP and PVE modes: set-stone, reset, draw-stone, highlight-boarder, calc-stone and ect.
 - [x] Make connection with Xiaoling’s classes and goal test. Add PVE mode mouse-events.
-- [x] Show the winning figure and freeze the canvas while one side wins. Finish PVP mode.
+- [x] Show the winning figure and disable call-back functions after one side wins. Finish PVP mode.
 
 
 
 ### Together
-- [x] PVP mode Design
-- [ ] PVE AI Design
+
+- [x] We have disccussed together about how we would implement our project.
+- [x] We seperated the work into several parts, and at the first week, Ruowei focused on designing the GUI, Xiaoling focused on implementing on the logic.
+- [x] Start from the second week, we started to connect the GUI with the game control.
+- [x] We have finished the PVP mode together on the third week and started to disccuss about how we should design our PVE mode.
+- [ ] Our PVE AI was created but not good enough.
  
