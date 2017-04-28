@@ -50,20 +50,20 @@ Our program has two major components: **Game control and Game UI**.
 
 **Game Logic**: controls the game flows (with several components as shown in the diagram).
 
-After the UI receives mouse click, our program will process the on-click event and sent to **Game Control**. This part could be >converting board frame coordinates into board class coordnates by scaling.
+After the UI receives mouse click, our program will process the on-click event and sent to **Game Control**. This part could be converting board frame coordinates into board class coordnates by scaling.
 
 
-**Check states status** will validate the data we get from the mouse-click (for instance, if the player clicks on an invalid piece (the >piece is occupied by another stone already), this will send an error feed back to UI). 
+**Check states status** will validate the data we get from the mouse-click (for instance, if the player clicks on an invalid piece (the piece is occupied by another stone already), this will send an error feed back to UI). 
 
-After validating the data, the program will **update the game states**. For instance, update board and change the occupied status for >the selected piece object.
+After validating the data, the program will **update the game states**. For instance, update board and change the occupied status for the selected piece object.
 
-After updating the game states (based on the player's input), the program will test if this player wins the game or not (**goal >test**). 
+After updating the game states (based on the player's input), the program will test if this player wins the game or not (**goal test**). 
 
 If the game is in **PvP** mode, it sends goal test result and board information back to UI. 
 
-If the game is in **PvE** mode, it sends the same information only if the goal test is true. If the goal test for player is false, >the program will run algorithm to select best location to place stone and update states again. Then it will do a goal test for our AI >and send back informations to UI for display.
+If the game is in **PvE** mode, it sends the same information only if the goal test is true. If the goal test for player is false, the program will run algorithm to select best location to place stone and update states again. Then it will do a goal test for our AI and send back informations to UI for display.
 
-As shown in the **states** box on the upper right corner. The program holds states informations (we have stored it as fields in class >(racket/class)). **Mode** stores either the game is PvP mode or PvE mode. This depends on what the player choose in the beginning of >the game. **Board** stores 15 by 15 **Piece** objects via Matrix. **White-Stones []** and **Black-Stones []** are lists of placed >stones coordinates for easy reference. 
+As shown in the **states** box on the upper right corner. The program holds states informations (we have stored it as fields in class (racket/class)). **Mode** stores either the game is PvP mode or PvE mode. This depends on what the player choose in the beginning of the game. **Board** stores 15 by 15 **Piece** objects via Matrix. **White-Stones []** and **Black-Stones []** are lists of placed stones coordinates for easy reference. 
  
 
 Notes: we use block to represent each location to place the stone. There are 15 by 15 blocks on a board;
