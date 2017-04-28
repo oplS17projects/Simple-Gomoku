@@ -104,7 +104,7 @@ UI Improvenment.
 - [x] GUI design: Create the frame, draw the board on canvas, draw the stones using bitmap, create all buttons. 
 - [x] Button implementation: Implemented 'Mode option' and 'New Game' buttons, have call-back functions done, and control the game. Any other frame work.
 - [x] Mouseevent implementation: highlight the block while mouse-move, draw the stone while mouse-click. Refresh the canvas after each mouse-event.
-- [x] Useful methods for PVP and PVE modes: draw-stone, highlight-boarder, calc-stone and ect. Not used set-stone, reset, and ect.
+- [x] Useful methods for PVP and PVE modes: draw-stone, highlight-boarder, calc-stone and ect. Not used set-stone, reset.
 - [x] Make connection with Xiaoling’s classes and goal test. Add PVE mode mouse-events.
 - [x] Show the winning figure and disable call-back functions after one side wins. Finish PVP mode.
 
