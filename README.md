@@ -83,9 +83,9 @@ The project would prevent user from drawing on the same block(which is taken).
 
 Finish PvP mode. Start PvE mode.
 
-### Public Presentation (Mon Apr 24, Wed Apr 26, or Fri Apr 28 [your date to be determined later])
+### Public Presentation (Fri Apr 28)
 
-Finish PvE mode AI. 
+Our AI mode is not finished.
 
 UI Improvenment.  
 
@@ -106,8 +106,6 @@ UI Improvenment.
 - [x] Useful methods for PVP and PVE modes: set-stone, reset, draw-stone, highlight-boarder, calc-stone and ect.
 - [x] Make connection with Xiaoling’s classes and goal test. Add PVE mode mouse-events.
 - [x] Show the winning figure and disable call-back functions after one side wins. Finish PVP mode.
-
-
 
 ### Together
 
