@@ -110,6 +110,17 @@
       (set! PlayerOne (make-object player%))
       (set! PlayerTwo (make-object player%))
       (set! Board (make-object board%)))
+      
+      
+     ;;rz's version not used.;;
+     ;; (define (reset)
+     ;;(define (reset-block t)
+     ;;(let ((x ((t 'get-x)))
+          ;; (y ((t 'get-y)))
+          ;;(set-stone (t 'set-stone)))
+        ;;(set-stone '())))
+        ;;(map reset-block blocks))
+        ;;end
     
   ;;the set-stone function  
     (define/public (set-stone x y)
