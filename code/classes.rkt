@@ -112,15 +112,7 @@
       (set! Board (make-object board%)))
       
       
-     ;;rz's version not used.;;
-     ;; (define (reset)
-     ;;(define (reset-block t)
-     ;;(let ((x ((t 'get-x)))
-          ;; (y ((t 'get-y)))
-          ;;(set-stone (t 'set-stone)))
-        ;;(set-stone '())))
-        ;;(map reset-block blocks))
-        ;;end;;
+     
     
   ;;the set-stone function  
     (define/public (set-stone x y)
@@ -128,19 +120,7 @@
           (set-black x y)
           (set-white x y)))
           
-          
-    ;;rz's version
-    ;;(define (set-stone steps)
-    ;;(if (= (remainder steps 2) 1)
-    ;;(let ([color 'black])
-    ;;color)
-    ;;(let ([color 'white])
-    ;;color)))
-    ;;(define (get-color)
-      ;;(if (= (remainder steps 2) 0)
-        ;;  (record-icon #:color "Black" #:height 32 #:material glass-icon-material)
-          ;;(record-icon #:color "White" #:height 32 #:material glass-icon-material)))
-          ;;not used. end;;
+        
        
    ;;calc-black-stone
     (define/public (get-pve-pos)
