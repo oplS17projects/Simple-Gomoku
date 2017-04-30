@@ -1,7 +1,7 @@
 #lang racket
 
 ;; main
-;; Apr-20-2017
+;; Apr-29-2017
 
 
 
@@ -129,7 +129,7 @@
                           (if (eq? #t (game 'pve?))
                               (begin 
                                ;;the AI function to calculate best place to draw the stone
-                                (let ((new-stone (calc-stone (game 'get-black-list) (game 'get-white-list))))
+                                (let ((new-stone (calc-stone (game 'get-black-list) (game 'get-white-list) board-coord)))
                                      ((game 'set-stone) (car new-stone) (cadr new-stone))))
                               ;; new-stone calc-stone((game 'get-black-list) (game 'get-white-list))
                               void)
@@ -236,6 +236,7 @@
          [callback (lambda (button event)
                      (begin
                        (send msg set-label "PVE Mode is chosen")
+                       (reset-game)
                        ((game 'set-pve) #t)
                        ;;always draw the first black stone on (7,7) if PVE button is clicked
                        ((game 'set-stone) 7 7)
@@ -266,7 +267,7 @@
                        (reset-game)
                        (send msg set-label "Reset is done! The Default Mode is PVP")
                        (send board-canvas refresh-now)))]
-         [horiz-margin 200]
+         [horiz-margin 180]
          [min-width 150])
     
     (send frame show #t)))
