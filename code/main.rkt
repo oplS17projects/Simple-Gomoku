@@ -12,7 +12,7 @@
 (require pict images/icons/control images/icons/style)
 
 (require "make-game.rkt")
-(require "calc-pos.rkt")
+(require "calc-stone.rkt")
 
 ;;color database
 ;;https://docs.racket-lang.org/draw/color-database___.html
