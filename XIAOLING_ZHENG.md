@@ -92,7 +92,7 @@ The following code helps to check if a list contains consecutive 5 numbers. It's
 The ```helper-lst``` procedure iterates through the list of inputs (list of y-coords or list of x-coords), use index to indicate the amount of consecutive numbers, returns #t if the index reaches 4, #f if it reaches end of the list. 
 
 
-## 3. State modification (with iterative recursive and data abstraction)
+## 4. State modification (with iterative recursive and data abstraction)
 
 
 Here is a demonstration of horizontal check: 
@@ -126,7 +126,7 @@ Argument ```proc``` is used for getting the next diagonal coordinates for certai
   (list (- (car coord) 1) (+ (cadr coord) 1)))
 ```
 
-## 4. Object Orientaion - use of dispatch
+## 5. Object Orientaion - use of dispatch
 
 Even though the game classes are all based on racket/class. As we progress in implementing our code, we found it is cumbersome to use accessors provided by racket/class. We decided to create a dispatch as shown below. 
 
