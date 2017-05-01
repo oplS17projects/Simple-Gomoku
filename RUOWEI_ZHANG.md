@@ -39,12 +39,94 @@ UMass Lowell's COMP.3010 Organization of Programming languages course.
 
 Five examples are shown and they are individually numbered. 
 
+ 
+## 1. Using Object-Orientation to Design the GUI
 
-## 5. Using Map and Filter(Remove*)
+I created several instances of multiple classes(frame/canvas) in ```racket/gui```.
+
+I also used inheritance methods from the superclass. 
+
+```
+(define no-pen (new pen% [style 'transparent]))
+
+(define no-brush (new brush% [style 'transparent]))
+```
+
+```
+(define frame
+      (new frame%
+           [label "Simple Gomoku"]
+           [width board-size]
+           [height (+ board-size 132)]
+           [style (list 'no-resize-border)]))
+ ```
+ 
+ ```
+(define board%
+   (class canvas%
+   (inherit refresh-now)
+   (inherit get-dc)
+  ......))
+````
+
+```
+(define board-canvas (new board%
+    [parent frame]
+   [min-width board-size]
+   [min-height board-size]
+   (paint-callback (lambda (canvas dc)
+   .....))
+```
+I override ```on-event``` function and define the new behavior of this function.
+
+It gets coordinates of the mouse-move and calculate which block the mouse is on.
+
+```
+ (define board%
+    (class canvas%
+        (inherit refresh-now)
+        (inherit get-dc)
+        (define board%
+   
+    (define/override (on-event event)
+        (let 
+        ((block-x (quotient (send event get-x) block-size)) 
+        (block-y (quotient (send event get-y) block-size)))
+          ......
+```
+      
+ 
+## 2. Using State-Modification Approaches(Set!)
+
+```set-pve``` code is in ```classes.rkt```, and it changes the game mode to PVE
+
+```reset-game``` was in the file, but we decided to use Xiaoling's version.
+
+It is used to initialize or reinstated the game after clicking the 'New Game' button.
+
+
+```
+(define (reset-game)
+      (begin
+        (send game reset)
+        (set! steps 0)
+        (set! winner 0)
+        (set! highlight-block null)))
+```
+
+
+```
+(define/public (set-pve t)
+      (set! pve t))
+```
+
+## 3. Using Map and Filter(Remove*) with Data Abstraction
 
 The code is in ```cal-stone.rkt ```. 
 
-This method takes 3 different lists(black occupied list, white occupied list and the board list) as parameter.
+We use the data structure List to save three different kinds of coordinates.
+
+This method ```calc-stone``` takes these different lists(black occupied list, white occupied list and the board list) as parameters.
 
 ```map``` and ```remove*``` are used to proccess the lists and return a selected coordinate to let the program draw the next black stone for PVE mode.
 
@@ -66,4 +148,55 @@ This method takes 3 different lists(black occupied list, white occupied list and
   (list-ref emptylst2 (min-position x))
 )
 ```
+
+
+## 4. Dispatch
+
+The code is in ```make-game.rkt```.
+
+I added two more functions to Xiaoling's ```make-game.rkt``` using dispatch. 
+
+It is used to call classes' own methods
+
+```
+(define (make-game)
+  (let (( G (make-object game%)))
+    (define (dispatch m)
+      (cond
+      ......
+      [(equal? m 'get-pve-pos?) (send G get-pve-pos)]
+      [(equal? m 'reset) (send G reset)]
+      ......))
+      dispatch))
+```
+
+## 5. Using Functional Approaches in Many Functions
+
+The following code is in ```main.rkt```
+
+Callback procedures for a button click using ```Begin``` and ```lambda expression```.
+
+```
+[callback (lambda (button event)
+                     (begin
+                       (send msg set-label "PVE Mode is chosen")
+                       (reset-game)
+                       ((game 'set-pve) #t)
+                       ((game 'set-stone) 7 7)
+                       (send board-canvas refresh-now)
+                      ))]
+ ```
+ 
+ If the game is in PVE mode, the program will automatically calculate and draw the next black stone.
+ This function used ```begin``` and ```let```
+ ```
+ (if (eq? #t (game 'pve?))
+        (begin 
+        (let 
+        ((new-stone (calc-stone (game 'get-black-list) (game 'get-white-list) board-coord)))
+        ((game 'set-stone) (car new-stone) (cadr new-stone))))
+    void)
+```
+ 
+ 
 
