@@ -7,7 +7,7 @@
 
 This project implements a strategic board game Gomoku using Scheme. My and my partner used Dr.Racket and racket libraries to create interface and internal game structure. The game we created allows both PVP and PVE mode. However, the PVE mode only works as a concept due to time limit. 
 
-I focued on internal game structure, two main parts I did was creating game classes and goal-test. Game classes are based on racket/class library, while goal-test used some techqniues from the OPL class. 
+I focused on internal game structure, two main parts I did was creating game classes and goal-test. Game classes are based on racket/class library, while goal-test used some techqniues from the OPL class. 
 
 **Authorship note:** All of the code described here was written by myself.
 
@@ -92,10 +92,17 @@ The following code helps to check if a list contains consecutive 5 numbers. It's
 The ```helper-lst``` procedure iterates through the list of inputs (list of y-coords or list of x-coords), use index to indicate the amount of consecutive numbers, returns #t if the index reaches 4, #f if it reaches end of the list. 
 
 
-## 3. State modification
+## 3. State modification (with iterative recursive and data abstraction)
 
-A proc helper function used in both check-top-left-to-bottom-right and check-bottom-left-to-upper-right (diagonal check)
 
+Here is a demonstration of horizontal check: 
+```
+(define (check-bottom-left-to-upper-right lst)
+  (cond[(eq? lst #t) #t]
+       [(< (length lst) 5) #f]
+       [else (check-top-left-to-bottom-right (check-one-coord (car lst) decre-x-incre-y lst))]))
+```
+A proc helper function used in both ```check-top-left-to-bottom-right ```and ```check-bottom-left-to-upper-right``` (diagonal check)
 ```
 (define (check-one-coord start proc lst)
   (let ((check-list lst))
@@ -108,9 +115,20 @@ A proc helper function used in both check-top-left-to-bottom-right and check-bot
     (help-itr start lst 0)))
     
 ```
-This procedure holds a state check-list and updates the list by removing the first element of the list inside the helper function help-itr. By doing this, the helper function 
+This procedure holds a state ```check-list``` and updates the list by removing the first element of the list inside the helper function help-itr. State modification is helpful in this procedure for the reason that I constructed this procedure similar to the idea of member function. It returns the remaining list (with out just checked coords) if checked coords does not satisfy connected 5, returns ```#t``` if else. The iterative horizontal check will either move forward (when returned ```lst``` is remaining list) or terminates (when returned ```lst``` is ```#t``` or less than 5). 
+
+```help-itr``` is also iterative recursion, use an index count to hold the amount of consecutive number. 
+
+Argument ```proc``` is used for getting the next diagonal coordinates for certain coordinate. ```decre-x-incre-y``` is used for ```check-bottom-left-to-upper-right```, as shown below, it works as data abstraction. 
+
+```
+(define (decre-x-incre-y coord)
+  (list (- (car coord) 1) (+ (cadr coord) 1)))
+```
 
 ## 4. Object Orientaion - use of dispatch
+
+Even though the game classes are all based on racket/class. As we progress in implementing our code, we found it is cumbersome to use accessors provided by racket/class. We decided to create a dispatch as shown below. 
 
 ```
 (define (make-game)
@@ -129,5 +147,5 @@ This procedure holds a state check-list and updates the list by removing the fir
            [(equal? m 'set-stone) (lambda (x y)((if(eq? (get-field winner G) 'none) (send G set-stone x y) #f)))]))
     dispatch))
 ```
-
+By providing procedure ```make-game```, our main can create game object and manipuate all the state informations. 
 
