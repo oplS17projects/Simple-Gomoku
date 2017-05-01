@@ -131,6 +131,8 @@ This method ```calc-stone``` takes these different lists(black occupied list, wh
 
 ```map``` and ```remove*``` are used to proccess the lists and return a selected coordinate to let the program draw the next black stone for PVE mode.
 
+It basicly returns one empty block's coordinate, which is closet to (7, 7).
+
 
 ```
 (define (calc-stone placed-black-stones placed-white-stones board-coord)
