@@ -98,7 +98,7 @@ It gets coordinates of the mouse-move and calculate which block the mouse is on.
  
 ## 2. Using State-Modification Approaches(Set!)
 
-```set-pve``` code is in ```classes.rkt```, and it changes the game mode to PVE
+```set-pve``` code is in ```classes.rkt```, and it changes the game mode to PVE.
 
 ```reset-game``` was in the file, but we decided to use Xiaoling's version.
 
@@ -114,6 +114,7 @@ It is used to initialize or reinstated the game after clicking the 'New Game' bu
         (set! highlight-block null)))
 ```
 
+It is used to change the game to PVE mode.
 
 ```
 (define/public (set-pve t)
@@ -122,7 +123,7 @@ It is used to initialize or reinstated the game after clicking the 'New Game' bu
 
 ## 3. Using Map and Filter(Remove*) with Data Abstraction
 
-The code is in ```cal-stone.rkt ```. 
+The code is in ```calc-stone.rkt ```. 
 
 We use the data structure List to save three different kinds of coordinates.
 
@@ -156,7 +157,7 @@ The code is in ```make-game.rkt```.
 
 I added two more functions to Xiaoling's ```make-game.rkt``` using dispatch. 
 
-It is used to call classes' own methods
+It is used to call classes' own methods.
 
 ```
 (define (make-game)
@@ -172,7 +173,7 @@ It is used to call classes' own methods
 
 ## 5. Using Functional Approaches in Many Functions
 
-The following code is in ```main.rkt```
+The following code is in ```main.rkt```.
 
 Callback procedures for a button click using ```Begin``` and ```lambda expression```.
 
@@ -188,7 +189,7 @@ Callback procedures for a button click using ```Begin``` and ```lambda expressio
  ```
  
  If the game is in PVE mode, the program will automatically calculate and draw the next black stone.
- This function used ```begin``` and ```let```
+ This function used ```begin``` and ```let```.
  ```
  (if (eq? #t (game 'pve?))
         (begin 
