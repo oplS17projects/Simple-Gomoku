@@ -39,3 +39,32 @@ UMass Lowell's COMP.3010 Organization of Programming languages course.
 
 
 
+```
+
+## 5. Using Map and Filter(Remove*)
+
+The code is in ```cal-stone.rkt ```. 
+
+This method takes 3 different lists(black occupied list, white occupied list and the board list) as parameter.
+
+```map``` and ```remove*``` are used to proccess the lists and return a selected coordinate to let the program draw the next black stone for PVE mode.
+
+
+```
+(define (calc-stone placed-black-stones placed-white-stones board-coord)
+  
+  (define occupiedlst (list 'nil))
+  (set! occupiedlst (append placed-black-stones placed-white-stones))
+  (define emptylst (remove* occupiedlst board-coord))
+  (define center '(7 7))
+  (define emptylst2 (remove* center emptylst))
+  
+  (define x (map (lambda (y)
+                   (floor (sqrt
+                    (+ (* (- (car y) 7) (- (car y) 7))
+                     (* (- (cadr y) 7) (- (cadr y) 7))))))
+                 emptylst2))
+  (list-ref emptylst2 (min-position x))
+)
+```
+
